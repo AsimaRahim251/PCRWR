@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCRWR | National Water Quality Portal</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand: #1e4d9c;
+      --brand-2: #2563eb;
+      --safe: #10b981;
+      --unsafe: #f43f5e;
+      --bg: #eef7fb;
+      --bg2: #f0f9ff;
+      --surface: #ffffff;
+      --border: #e0eef5;
+      --text: #0f172a;
+      --muted: #64748b;
+      --shadow: 0 4px 24px rgba(30, 100, 160, 0.07);
+      --shadow-lg: 0 12px 40px rgba(30, 100, 160, 0.1);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+      background: linear-gradient(160deg, #e0f2fe 0%, #f0f9ff 40%, #ecfdf5 100%);
+      color: var(--text);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== NAV ===== */
+    .top-nav {
+      background: linear-gradient(90deg, #1e40af 0%, #2563eb 50%, #0ea5e9 100%);
+      color: #fff;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      padding: 0 22px;
+      gap: 16px;
+      flex-shrink: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.25);
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: #fff;
+    }
+    .brand img { height: 26px; object-fit: contain; }
+    .brand-text { font-weight: 700; font-size: 0.92rem; }
+    .brand-text span { font-weight: 400; opacity: 0.8; font-size: 0.76rem; margin-left: 4px; }
+    .nav-links { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .nav-links a {
+      color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.78rem;
+      padding: 8px 14px; border-radius: 999px;
+      display: flex; align-items: center; gap: 6px;
+      transition: all .22s ease; font-weight: 500;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .nav-links a.active {
+      background: rgba(255,255,255,0.22); color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .nav-feedback {
+      border: 1.5px solid rgba(255,255,255,0.4) !important;
+      margin-left: 8px;
+    }
+    .nav-ai::before {
+      content: '';
+      position: absolute; top: 6px; right: 10px;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 0 rgba(74,222,128,0.5);
+      animation: aiNavPulse 2s infinite;
+    }
+    .nav-ai { position: relative; }
+    @keyframes aiNavPulse {
+      0% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+      100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+    }
+
+    /* ===== TOOLBAR — soft pill bar ===== */
+    .toolbar {
+      background: transparent;
+      padding: 12px 20px 8px;
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .toolbar-title {
+      font-weight: 800; font-size: 1.05rem;
+      display: flex; align-items: center; gap: 10px;
+      letter-spacing: -0.02em; color: #0f172a;
+    }
+    .src-count {
+      font-size: 0.7rem; color: var(--muted); font-weight: 600;
+      background: #fff; padding: 4px 10px; border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 14px; border-radius: 999px; font-size: 0.74rem; font-weight: 700;
+      background: #fff; box-shadow: var(--shadow); border: none;
+      transition: transform .2s ease, box-shadow .2s;
+    }
+    .pill:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .pill-safe { color: #059669; }
+    .pill-unsafe { color: #e11d48; }
+    .pill-critical { color: #c2410c; }
+    .pill-total { color: #1d4ed8; }
+    .search-wrap { flex: 1; min-width: 140px; max-width: 240px; position: relative; }
+    .search-wrap input {
+      width: 100%; padding: 10px 14px 10px 38px;
+      border: none; border-radius: 999px;
+      font-size: 0.84rem; outline: none; background: #fff;
+      box-shadow: var(--shadow); font-family: inherit;
+      transition: box-shadow .2s;
+    }
+    .search-wrap input:focus { box-shadow: 0 0 0 3px rgba(37,99,235,0.15), var(--shadow); }
+    .search-wrap .ti {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: #94a3b8;
+    }
+    .btn {
+      padding: 10px 18px; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
+      border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+      transition: all .22s ease; font-family: inherit;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff; box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+    }
+    .btn-outline {
+      background: #fff; color: #475569; box-shadow: var(--shadow);
+    }
+    .btn-outline:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+    .btn-danger { background: linear-gradient(135deg, #fb7185, #f43f5e); color: #fff; }
+    #btn-refresh.spinning i { animation: spin .6s linear; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== MAIN ===== */
+    .main {
+      flex: 1; display: grid; grid-template-columns: 240px 1fr;
+      min-height: 0; overflow: hidden;
+      padding: 0 16px 16px; gap: 14px;
+      transition: grid-template-columns .35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .main.sidebar-collapsed { grid-template-columns: 0px 1fr; }
+    .main.hidden { display: none !important; }
+    .toolbar.hidden { display: none !important; }
+
+    /* ===== SIDEBAR — climate style ===== */
+    .sidebar {
+      background: #fff;
+      border-radius: var(--radius);
+      display: flex; flex-direction: column; min-height: 0; z-index: 20;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: opacity .3s, transform .35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .main.sidebar-collapsed .sidebar {
+      opacity: 0; transform: translateX(-16px); pointer-events: none;
+    }
+    .sidebar-header {
+      padding: 18px 16px 12px;
+      flex-shrink: 0;
+    }
+    .sidebar-header h2 {
+      font-size: 0.9rem; font-weight: 800;
+      display: flex; align-items: center; gap: 10px;
+      letter-spacing: -0.02em; color: #0f172a;
+    }
+    .sidebar-header h2 .ti {
+      width: 34px; height: 34px; border-radius: 12px;
+      background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+      color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+    .sidebar-header p {
+      font-size: 0.7rem; color: var(--muted); margin-top: 6px; margin-left: 44px;
+    }
+
+    .geo-tabs {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 8px 10px 12px; flex-shrink: 0;
+    }
+    .geo-tab {
+      width: 100%; padding: 11px 14px; border: none;
+      background: transparent; border-radius: 12px;
+      font-size: 0.78rem; font-weight: 700; color: var(--muted);
+      cursor: pointer; display: flex; flex-direction: row;
+      align-items: center; gap: 10px;
+      transition: all .22s ease; font-family: inherit;
+      text-transform: none; letter-spacing: 0; text-align: left;
+    }
+    .geo-tab .ti { font-size: 1.15rem; }
+    .geo-tab:hover { background: #f0f9ff; color: var(--brand-2); }
+    .geo-tab.active {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #0f172a;
+      box-shadow: 0 4px 14px rgba(245,158,11,0.35);
+    }
+
+    .tab-panels { flex: 1; overflow-y: auto; padding: 4px 14px 16px; }
+    .tab-panel { display: none; animation: fadeUp .3s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .ca-hint { font-size: 0.76rem; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+    .ca-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .ca-row {
+      display: flex; align-items: center; gap: 10px; padding: 12px;
+      border-radius: 14px; background: #f8fafc; border: 1px solid transparent;
+      cursor: pointer; transition: all .22s ease;
+    }
+    .ca-row:hover {
+      background: #fff; border-color: #bae6fd;
+      box-shadow: var(--shadow); transform: translateX(3px);
+    }
+    .ca-rank {
+      width: 28px; height: 28px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.72rem; color: #fff; flex-shrink: 0;
+    }
+    .ca-info { flex: 1; min-width: 0; }
+    .ca-label { font-size: 0.8rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ca-meta { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+    .ca-meta .pct { font-weight: 700; color: var(--unsafe); }
+    .ca-bar { height: 4px; background: #e2e8f0; border-radius: 99px; margin-top: 6px; overflow: hidden; }
+    .ca-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #fbbf24, #f43f5e); }
+    .ca-pin { color: #cbd5e1; }
+    .ca-row:hover .ca-pin { color: var(--brand-2); }
+    .ca-empty { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 28px 0; }
+
+    .add-ca-btn {
+      width: 100%; margin-top: 12px; padding: 12px;
+      border: none; background: linear-gradient(135deg, #fecdd3, #fda4af);
+      color: #9f1239; border-radius: 14px; font-weight: 700; font-size: 0.8rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+      transition: all .22s; font-family: inherit;
+    }
+    .add-ca-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(244,63,94,0.2); }
+
+    .layer-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 8px; cursor: pointer; border-radius: 12px;
+    }
+    .layer-row:hover { background: #f0f9ff; }
+    .layer-label { display: flex; align-items: center; gap: 10px; font-size: 0.84rem; font-weight: 600; }
+    .layer-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .layer-dot.safe { background: var(--safe); box-shadow: 0 0 0 3px rgba(16,185,129,0.2); }
+    .layer-dot.unsafe { background: var(--unsafe); box-shadow: 0 0 0 3px rgba(244,63,94,0.2); }
+    .layer-count {
+      font-size: 0.7rem; background: #f0f9ff; padding: 3px 9px;
+      border-radius: 999px; color: var(--muted); margin-left: 4px; font-weight: 700;
+    }
+    .switch { position: relative; width: 42px; height: 24px; flex-shrink: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; inset: 0; background: #e2e8f0;
+      border-radius: 99px; transition: .25s; cursor: pointer;
+    }
+    .slider::before {
+      content: ''; position: absolute; width: 18px; height: 18px;
+      left: 3px; top: 3px; background: #fff; border-radius: 50%;
+      transition: .25s; box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+    }
+    .switch input:checked + .slider { background: linear-gradient(90deg, #34d399, #10b981); }
+    .switch input:checked + .slider::before { transform: translateX(18px); }
+    .divider { height: 1px; background: var(--border); margin: 12px 0; }
+    .section-label {
+      font-size: 0.68rem; font-weight: 800; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .badge-new {
+      font-size: 0.58rem; font-weight: 800; color: #0369a1;
+      background: #e0f2fe; padding: 2px 8px; border-radius: 999px;
+    }
+    .hint { font-size: 0.72rem; color: var(--muted); margin: 6px 0 0; line-height: 1.45; }
+    .basemap-row { display: flex; gap: 6px; margin-top: 8px; }
+    .basemap-btn {
+      flex: 1; padding: 10px 4px; border: none;
+      background: #f0f9ff; border-radius: 12px; font-size: 0.72rem;
+      font-weight: 700; cursor: pointer; color: var(--muted);
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+      transition: all .2s; font-family: inherit;
+    }
+    .basemap-btn:hover { background: #e0f2fe; color: var(--brand-2); }
+    .basemap-btn.active {
+      background: linear-gradient(135deg, #3b82f6, #0ea5e9); color: #fff;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+
+    .stat-block {
+      background: #f0f9ff; border-radius: 16px; padding: 16px;
+      margin-bottom: 12px; border: none;
+    }
+    .stat-block h4 {
+      font-size: 0.68rem; font-weight: 800; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;
+    }
+    .donut-wrap { display: flex; align-items: center; gap: 16px; }
+    .donut {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: conic-gradient(var(--safe) 0% var(--safe-pct, 36%), var(--unsafe) var(--safe-pct, 36%) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; flex-shrink: 0;
+      box-shadow: 0 0 0 6px #fff, 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .donut::after {
+      content: ''; position: absolute;
+      width: 58px; height: 58px; border-radius: 50%; background: #fff;
+    }
+    .donut-inner { position: relative; z-index: 1; text-align: center; }
+    .donut-val { font-size: 1.05rem; font-weight: 800; }
+    .donut-lbl { font-size: 0.6rem; color: var(--muted); }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; margin-bottom: 8px; font-weight: 600; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .stat-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+    .chip {
+      background: #fff; border: none; border-radius: 14px; padding: 12px; text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .chip-val { font-size: 1.15rem; font-weight: 800; }
+    .chip-lbl { font-size: 0.65rem; color: var(--muted); margin-top: 2px; }
+
+    .quick-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .qs {
+      background: #fff; border-radius: 16px; padding: 16px 10px;
+      border: none; text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .qs:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .qs-val { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.03em; }
+    .qs-lbl { font-size: 0.68rem; color: var(--muted); margin-top: 4px; font-weight: 600; }
+    .qs.safe .qs-val { color: var(--safe); }
+    .qs.unsafe .qs-val { color: var(--unsafe); }
+    .qs.total .qs-val { color: var(--brand-2); }
+    .qs.critical .qs-val { color: #ea580c; }
+
+    /* ===== MAP ===== */
+    .map-wrap {
+      position: relative; background: #fff; min-height: 0;
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    #map { width: 100%; height: 100%; border-radius: var(--radius); }
+    .map-floating-tabs {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      z-index: 500;
+      display: flex; gap: 4px;
+      background: rgba(255,255,255,0.95);
+      padding: 5px; border-radius: 999px;
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(12px);
+    }
+    .map-ftab {
+      padding: 8px 16px; border-radius: 999px; border: none;
+      background: transparent; font-size: 0.76rem; font-weight: 700;
+      color: var(--muted); cursor: pointer; transition: all .22s;
+      font-family: inherit;
+    }
+    .map-ftab:hover { color: var(--brand-2); background: #f0f9ff; }
+    .map-ftab.active {
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      color: #fff; box-shadow: 0 4px 12px rgba(249,115,22,0.35);
+    }
+    .leaflet-control-zoom {
+      border: none !important;
+      box-shadow: var(--shadow-lg) !important;
+      border-radius: 14px !important; overflow: hidden;
+    }
+    .leaflet-control-zoom a {
+      width: 36px !important; height: 36px !important;
+      line-height: 36px !important; color: var(--brand) !important;
+      border-bottom-color: var(--border) !important;
+    }
+
+    .sidebar-toggle {
+      position: absolute; top: 50%; left: 0;
+      transform: translateY(-50%);
+      z-index: 550;
+      width: 28px; height: 52px;
+      border: none;
+      background: #fff;
+      border-radius: 0 12px 12px 0;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--brand-2);
+      box-shadow: var(--shadow);
+      transition: left .35s cubic-bezier(0.4,0,0.2,1), background .2s, color .2s;
+      font-size: 1rem;
+    }
+    .sidebar-toggle:hover { background: var(--brand-2); color: #fff; }
+    .main.sidebar-collapsed .sidebar-toggle { left: 0; }
+    .main:not(.sidebar-collapsed) .sidebar-toggle { left: 0; }
+
+    .pulse-marker-wrap { background: transparent !important; border: none !important; }
+    .pulse-dot {
+      display: block; width: 14px; height: 14px;
+      background: rgba(244,63,94,0.4); border-radius: 50%;
+      animation: pulse 1.5s ease-out infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.6); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 50, 100, 0.4);
+      z-index: 2000; display: none; align-items: center; justify-content: center;
+      padding: 16px; backdrop-filter: blur(6px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #fff; border-radius: 22px; width: 100%; max-width: 420px;
+      box-shadow: var(--shadow-lg); overflow: hidden;
+      animation: modalIn .25s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+    .modal-head {
+      padding: 16px 20px;
+      background: linear-gradient(90deg, #f43f5e, #fb7185);
+      color: #fff; display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-head h3 { font-size: 0.95rem; font-weight: 700; }
+    .modal-close {
+      background: rgba(255,255,255,0.2); border: 0; color: #fff;
+      width: 30px; height: 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+    }
+    .modal-body { padding: 20px; }
+    .form-g { margin-bottom: 14px; }
+    .form-g label { display: block; font-size: 0.74rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+    .form-g input {
+      width: 100%; padding: 11px 14px; border: 2px solid var(--border);
+      border-radius: 12px; font-size: 0.88rem; outline: none; font-family: inherit;
+    }
+    .form-g input:focus { border-color: #93c5fd; }
+    .form-row { display: flex; gap: 10px; }
+    .form-row .form-g { flex: 1; }
+    .modal-foot { padding: 0 20px 20px; display: flex; gap: 10px; justify-content: flex-end; }
+
+    /* ===== PAGES ===== */
+    .page-view {
+      display: none; flex: 1; min-height: 0; overflow: auto;
+      padding: 16px 20px 24px; background: transparent;
+    }
+    .page-view.active { display: block; }
+    .page-card {
+      background: #fff; border-radius: 22px; border: none;
+      box-shadow: var(--shadow); padding: 28px 32px;
+      max-width: 1100px; margin: 0 auto;
+      animation: fadeUp .4s ease;
+    }
+    .page-card h2 {
+      font-size: 1.25rem; font-weight: 800; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 10px;
+      letter-spacing: -0.02em; color: #0f172a;
+    }
+    .page-card .sub { font-size: 0.84rem; color: var(--muted); margin-bottom: 22px; }
+    .report-tabs {
+      display: flex; gap: 4px; background: #f0f9ff;
+      padding: 5px; border-radius: 999px; margin-bottom: 20px; width: fit-content;
+    }
+    .report-tab {
+      padding: 10px 18px; border: none; background: transparent; cursor: pointer;
+      font-size: 0.82rem; font-weight: 700; color: var(--muted);
+      border-radius: 999px; font-family: inherit; transition: all .2s;
+    }
+    .report-tab:hover { color: var(--brand-2); }
+    .report-tab.active {
+      background: #fff; color: var(--brand-2);
+      box-shadow: var(--shadow);
+    }
+    .report-filters {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; align-items: center;
+    }
+    .report-filters select, .report-filters input {
+      padding: 10px 14px; border: none; border-radius: 999px;
+      font-size: 0.82rem; background: #f0f9ff; outline: none; font-family: inherit;
+      box-shadow: inset 0 0 0 1px var(--border);
+    }
+    .status-badge {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 700;
+    }
+    .status-badge.safe { background: #d1fae5; color: #047857; }
+    .status-badge.unsafe { background: #ffe4e6; color: #be123c; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .data-table th {
+      text-align: left; padding: 12px 14px; background: #f0f9ff;
+      color: var(--muted); font-weight: 700; border-bottom: none;
+      position: sticky; top: 0; z-index: 1; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .data-table td { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; }
+    .data-table tr:hover td { background: #f8fafc; }
+    .table-wrap {
+      overflow-x: auto; max-height: calc(100vh - 320px); overflow-y: auto;
+      border-radius: 16px; background: #fff;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px; margin-bottom: 28px;
+    }
+    .stats-box {
+      background: linear-gradient(160deg, #f0f9ff, #fff);
+      border: none; border-radius: 18px; padding: 20px; text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .stats-box:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .stats-box .num { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; }
+    .stats-box .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 4px; font-weight: 600; }
+    .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 0.84rem; }
+    .bar-label { width: 70px; color: var(--muted); font-weight: 700; font-size: 0.8rem; }
+    .bar-track {
+      flex: 1; height: 12px; background: #f0f9ff; border-radius: 99px; overflow: hidden;
+    }
+    .bar-fill { height: 100%; border-radius: 99px; transition: width .5s ease; }
+
+    /* FILTERS DRAWER — premium soft look */
+    .filters-drawer {
+      position: fixed;
+      top: 12px; right: 12px; bottom: 12px;
+      width: 360px;
+      max-width: calc(100vw - 24px);
+      background: #fff;
+      color: var(--text);
+      z-index: 1500;
+      transform: translateX(calc(100% + 24px));
+      transition: transform .45s cubic-bezier(0.32, 0.72, 0, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(30, 80, 160, 0.18);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .filters-drawer.open { transform: translateX(0); }
+
+    .filters-drawer-head {
+      display: flex; align-items: center; gap: 12px;
+      padding: 18px 18px 16px;
+      background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .filters-close {
+      width: 36px; height: 36px; border-radius: 12px;
+      border: none; background: rgba(255,255,255,0.2);
+      color: #fff; cursor: pointer; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .2s;
+    }
+    .filters-close:hover { background: rgba(255,255,255,0.35); transform: rotate(90deg); }
+    .filters-title {
+      font-size: 1.15rem; font-weight: 800; flex: 1;
+      letter-spacing: -0.02em;
+    }
+    .filters-apply-top {
+      padding: 9px 18px !important; border-radius: 999px !important;
+      background: #fbbf24 !important; color: #0f172a !important;
+      font-weight: 800 !important;
+      box-shadow: 0 4px 14px rgba(251,191,36,0.45) !important;
+      border: none !important;
+    }
+    .filters-apply-top:hover {
+      background: #f59e0b !important;
+      transform: translateY(-1px);
+    }
+
+    .filters-drawer-body {
+      flex: 1; overflow-y: auto; padding: 12px 14px 20px;
+      background: linear-gradient(180deg, #f0f9ff 0%, #fff 30%);
+    }
+
+    .filter-row {
+      width: 100%; display: flex; align-items: center; gap: 12px;
+      padding: 14px 14px;
+      border: none; background: #fff;
+      color: var(--text); cursor: pointer; text-align: left;
+      font-family: inherit;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 10px rgba(30,100,160,0.05);
+      transition: all .22s ease;
+    }
+    .filter-row:hover {
+      box-shadow: 0 6px 20px rgba(30,100,160,0.1);
+      transform: translateY(-1px);
+    }
+    .filter-row.open-row {
+      background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+      box-shadow: 0 4px 16px rgba(37,99,235,0.12);
+      border: 1px solid #bfdbfe;
+    }
+    .fr-icon {
+      width: 42px; height: 42px; border-radius: 14px;
+      background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+      color: #2563eb;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; flex-shrink: 0;
+      transition: transform .25s ease;
+    }
+    .filter-row.open-row .fr-icon {
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+      transform: scale(1.05);
+    }
+    .fr-text { flex: 1; min-width: 0; }
+    .fr-text strong {
+      display: block; font-size: 0.88rem; font-weight: 800;
+      color: #0f172a; letter-spacing: -0.01em;
+    }
+    .fr-text em {
+      font-style: normal; font-size: 0.72rem;
+      color: var(--muted); font-weight: 600;
+    }
+    .fr-arrow {
+      color: #94a3b8; font-size: 1.05rem;
+      transition: transform .25s ease, color .2s;
+    }
+    .filter-row.open-row .fr-arrow {
+      transform: rotate(90deg); color: #2563eb;
+    }
+
+    .filter-expand {
+      display: none;
+      padding: 4px 8px 14px 14px;
+      margin: -4px 0 10px;
+      animation: expandIn .3s ease;
+    }
+    .filter-expand.open { display: block; }
+    @keyframes expandIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: none; }
+    }
+    .fe-opt {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px; font-size: 0.84rem; cursor: pointer;
+      border-radius: 12px; font-weight: 600; color: #334155;
+      transition: background .15s;
+    }
+    .fe-opt:hover { background: #f0f9ff; }
+    .fe-opt input {
+      accent-color: #2563eb; width: 18px; height: 18px;
+      cursor: pointer;
+    }
+
+    .year-tabs-v {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      padding: 6px 4px 8px;
+    }
+    .year-tab-v {
+      padding: 9px 16px; border-radius: 999px;
+      border: 2px solid #e0f2fe;
+      background: #fff; color: #64748b;
+      font-size: 0.8rem; font-weight: 800;
+      cursor: pointer; font-family: inherit;
+      transition: all .22s ease;
+    }
+    .year-tab-v:hover {
+      border-color: #93c5fd; color: #2563eb;
+      transform: translateY(-2px);
+    }
+    .year-tab-v.active {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #0f172a; border-color: transparent;
+      box-shadow: 0 4px 14px rgba(245,158,11,0.4);
+      transform: scale(1.05);
+    }
+
+    .show-results-block {
+      margin: 12px 4px 0; padding: 16px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px rgba(30,100,160,0.06);
+    }
+    .filter-label-plain {
+      font-size: 0.72rem; font-weight: 800; margin-bottom: 12px;
+      color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .result-radios {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .result-radios label {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; cursor: pointer; font-weight: 700;
+      padding: 10px 16px; border-radius: 999px;
+      background: #f0f9ff; color: #475569;
+      transition: all .2s; border: 2px solid transparent;
+    }
+    .result-radios label:has(input:checked) {
+      background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+      border-color: #93c5fd; color: #1e40af;
+    }
+    .result-radios input { accent-color: #2563eb; width: 16px; height: 16px; }
+
+    #btn-filters.active-filter {
+      background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+    }
+    .filters-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(15, 60, 120, 0.25);
+      z-index: 1490; opacity: 0; pointer-events: none;
+      transition: opacity .35s ease;
+      backdrop-filter: blur(4px);
+    }
+    .filters-backdrop.show { opacity: 1; pointer-events: auto; }
+
+    /* AI page soft style */
+    .ai-layout {
+      max-width: 720px; margin: 0 auto; height: calc(100vh - 100px);
+      display: flex; flex-direction: column; padding: 8px 0 16px;
+    }
+    .ai-hero { text-align: center; padding: 24px 20px 16px; animation: fadeUp .5s ease; }
+    .ai-hero-glow {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 280px; height: 100px;
+      background: radial-gradient(ellipse, rgba(56,189,248,0.2), transparent 70%);
+      pointer-events: none;
+    }
+    .ai-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 700; color: #047857;
+      background: #d1fae5; padding: 6px 14px; border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .ai-pulse-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #10b981;
+      animation: aiNavPulse 1.5s infinite;
+    }
+    .ai-hero h2 {
+      font-size: 1.4rem; font-weight: 800; color: #0f172a;
+      letter-spacing: -0.03em; margin-bottom: 8px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .ai-hero h2 .ti {
+      width: 42px; height: 42px; border-radius: 14px;
+      background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+      color: #fff; display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; box-shadow: 0 4px 16px rgba(37,99,235,0.35);
+      animation: robotBob 3s ease-in-out infinite;
+    }
+    @keyframes robotBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .ai-hero p { font-size: 0.88rem; color: var(--muted); max-width: 460px; margin: 0 auto; line-height: 1.55; }
+    .ai-chat {
+      flex: 1; overflow-y: auto; padding: 12px 8px 16px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .ai-msg { display: flex; gap: 10px; max-width: 92%; animation: fadeUp .35s ease; }
+    .ai-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+    .ai-avatar {
+      width: 36px; height: 36px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+    }
+    .ai-msg.user .ai-avatar { background: linear-gradient(135deg, #10b981, #059669); }
+    .ai-bubble {
+      background: #fff; border: none; border-radius: 16px; padding: 12px 16px;
+      font-size: 0.88rem; line-height: 1.55; box-shadow: var(--shadow);
+    }
+    .ai-msg.user .ai-bubble {
+      background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff;
+    }
+    .ai-typing { display: flex; gap: 4px; padding: 4px 0; }
+    .ai-typing span {
+      width: 7px; height: 7px; border-radius: 50%; background: #94a3b8;
+      animation: typing 1.2s infinite ease-in-out;
+    }
+    .ai-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .ai-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+    .ai-suggestions {
+      display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 4px 12px;
+      justify-content: center;
+    }
+    .ai-chip {
+      border: none; background: #fff; padding: 9px 16px; border-radius: 999px;
+      font-size: 0.76rem; font-weight: 700; color: var(--brand-2); cursor: pointer;
+      box-shadow: var(--shadow); transition: all .22s; font-family: inherit;
+    }
+    .ai-chip:hover {
+      transform: translateY(-2px); box-shadow: var(--shadow-lg);
+      background: #eff6ff;
+    }
+    .ai-input-row {
+      display: flex; gap: 8px; padding: 6px;
+      background: #fff; border: none; border-radius: 999px;
+      box-shadow: var(--shadow-lg);
+    }
+    .ai-input-row input {
+      flex: 1; border: none; outline: none; padding: 12px 18px;
+      font-size: 0.9rem; font-family: inherit; background: transparent;
+    }
+    .ai-send { margin: 4px; border-radius: 999px !important; padding: 10px 18px !important; }
+
+    @media (max-width: 900px) {
+      .main { grid-template-columns: 1fr; padding: 0 10px 10px; }
+      .sidebar {
+        position: absolute; left: 10px; top: 10px; bottom: 10px; width: 260px; z-index: 600;
+        transform: translateX(-120%); transition: transform .3s;
+      }
+      .sidebar.open { transform: translateX(0); }
+      .nav-links a span { display: none; }
+    }
+
+    /* Detail Report + Statistics premium */
+    .dr-page, .st-page { max-width: 1080px; }
+    .dr-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .dr-header-stats { display: flex; gap: 10px; }
+    .dr-mini {
+      background: #f0f9ff; border-radius: 14px; padding: 10px 16px;
+      text-align: center; min-width: 72px;
+      box-shadow: 0 2px 8px rgba(30,100,160,0.05);
+    }
+    .dr-mini.safe { background: #ecfdf5; }
+    .dr-mini.unsafe { background: #fff1f2; }
+    .dr-mini-val { display: block; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; }
+    .dr-mini.safe .dr-mini-val { color: #059669; }
+    .dr-mini.unsafe .dr-mini-val { color: #e11d48; }
+    .dr-mini-lbl { font-size: 0.68rem; color: var(--muted); font-weight: 600; }
+    .dr-count {
+      font-size: 0.78rem; font-weight: 700; color: var(--muted);
+      background: #f0f9ff; padding: 8px 14px; border-radius: 999px;
+    }
+    .dr-panel { display: none; animation: fadeUp .3s ease; }
+    .dr-panel.active { display: block; }
+
+    .summary-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px; margin-bottom: 20px;
+    }
+    .summary-card {
+      background: #fff; border-radius: 18px; padding: 20px;
+      text-align: center; box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .summary-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .sc-icon {
+      width: 48px; height: 48px; border-radius: 14px; margin: 0 auto 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.35rem;
+    }
+    .sc-val { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; }
+    .sc-lbl { font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-top: 4px; }
+    .summary-note {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: #f0f9ff; border-radius: 14px; padding: 14px 16px;
+      font-size: 0.82rem; color: var(--muted); line-height: 1.5;
+    }
+    .summary-note .ti { font-size: 1.1rem; color: #2563eb; flex-shrink: 0; margin-top: 1px; }
+
+    .param-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .param-row {
+      display: flex; align-items: center; gap: 12px;
+      background: #f8fafc; border-radius: 12px; padding: 12px 14px;
+    }
+    .param-name { width: 120px; font-size: 0.82rem; font-weight: 700; color: #334155; }
+    .param-bar {
+      flex: 1; height: 10px; background: #e2e8f0; border-radius: 99px; overflow: hidden;
+    }
+    .param-bar div { height: 100%; border-radius: 99px; transition: width .6s ease; }
+    .param-pct { width: 90px; text-align: right; font-size: 0.78rem; font-weight: 700; color: var(--muted); }
+
+    .st-badge-live {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #ecfdf5; color: #047857; font-size: 0.75rem; font-weight: 700;
+      padding: 8px 14px; border-radius: 999px;
+    }
+    .pulse-green {
+      width: 8px; height: 8px; border-radius: 50%; background: #10b981;
+      box-shadow: 0 0 0 0 rgba(16,185,129,0.5);
+      animation: aiNavPulse 1.8s infinite;
+    }
+    .st-hero { margin-bottom: 22px; }
+    .st-box-icon {
+      width: 40px; height: 40px; border-radius: 12px; margin: 0 auto 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .st-box-total .st-box-icon { background: #dbeafe; color: #2563eb; }
+    .st-box-safe .st-box-icon { background: #d1fae5; color: #059669; }
+    .st-box-unsafe .st-box-icon { background: #ffe4e6; color: #e11d48; }
+    .st-box-pct .st-box-icon { background: #fef3c7; color: #d97706; }
+    .st-box-safe .num { color: #059669; }
+    .st-box-unsafe .num { color: #e11d48; }
+    .st-box-pct .num { color: #d97706; }
+    .st-box-total .num { color: #2563eb; }
+
+    .st-two-col {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+    }
+    @media (max-width: 720px) { .st-two-col { grid-template-columns: 1fr; } }
+    .st-card {
+      background: #f0f9ff; border-radius: 18px; padding: 20px;
+    }
+    .st-card h3 {
+      font-size: 0.85rem; font-weight: 800; margin-bottom: 16px;
+      color: #0f172a; letter-spacing: -0.01em;
+    }
+    .bar-pct { width: 42px; font-weight: 800; font-size: 0.8rem; color: #334155; }
+    .st-donut-wrap { display: flex; justify-content: center; margin-top: 18px; }
+    .st-donut {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: conic-gradient(#10b981 0% var(--safe-pct, 36%), #f43f5e var(--safe-pct, 36%) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      box-shadow: 0 0 0 6px #fff, 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .st-donut::after {
+      content: ''; position: absolute;
+      width: 68px; height: 68px; border-radius: 50%; background: #fff;
+    }
+    .st-donut-inner {
+      position: relative; z-index: 1; text-align: center;
+    }
+    .st-donut-inner strong { display: block; font-size: 1.1rem; font-weight: 800; }
+    .st-donut-inner span { font-size: 0.65rem; color: var(--muted); font-weight: 600; }
+    .st-insights { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .st-insights li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.84rem; line-height: 1.45; color: #334155; font-weight: 500;
+    }
+    .st-insights .ti { font-size: 0.55rem; margin-top: 6px; }
+    .st-foot {
+      font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 8px;
+    }
+
+
+    /* Stats charts upgrade */
+    .st-charts-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+    }
+    @media (max-width: 800px) { .st-charts-row { grid-template-columns: 1fr; } }
+    .st-chart-card { min-height: 200px; }
+    .st-chart-card h3 {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 800; margin-bottom: 16px;
+    }
+    .st-chart-card h3 .ti { color: #2563eb; }
+    .st-donut-wrap {
+      display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap;
+    }
+    .st-donut {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: conic-gradient(#10b981 0% var(--safe-pct, 36%), #f43f5e var(--safe-pct, 36%) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      box-shadow: 0 0 0 8px #fff, 0 8px 24px rgba(0,0,0,0.06);
+      animation: donutPop .6s ease;
+    }
+    @keyframes donutPop {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .st-donut::after {
+      content: ''; position: absolute;
+      width: 78px; height: 78px; border-radius: 50%; background: #fff;
+    }
+    .st-donut-inner { position: relative; z-index: 1; text-align: center; }
+    .st-donut-inner strong { display: block; font-size: 1.25rem; font-weight: 800; }
+    .st-donut-inner span { font-size: 0.68rem; color: var(--muted); font-weight: 600; }
+    .st-donut-legend { display: flex; flex-direction: column; gap: 10px; }
+    .st-leg { display: flex; align-items: center; gap: 8px; font-size: 0.84rem; font-weight: 600; }
+    .st-leg-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .st-leg strong { margin-left: 4px; font-weight: 800; }
+
+    .bar-anim { transition: width .8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .st-hbar-group { margin-top: 20px; }
+    .st-hbar-title { font-size: 0.72rem; font-weight: 700; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .st-hbar-stack {
+      display: flex; height: 28px; border-radius: 99px; overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+    }
+    .st-hbar-seg { transition: width .8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .st-hbar-seg.safe { background: linear-gradient(90deg, #34d399, #10b981); }
+    .st-hbar-seg.unsafe { background: linear-gradient(90deg, #fb7185, #f43f5e); }
+
+    .st-line-chart { width: 100%; }
+    .st-svg { width: 100%; height: 120px; display: block; }
+    .st-line-dot {
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { r: 4; opacity: 1; }
+      50% { r: 6; opacity: 0.85; }
+    }
+    .st-line-labels {
+      display: flex; justify-content: space-between;
+      font-size: 0.68rem; font-weight: 700; color: var(--muted); margin-top: 6px;
+      padding: 0 2px;
+    }
+    #st-line {
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+      animation: drawLine 1.2s ease forwards;
+    }
+    @keyframes drawLine {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* LIVE animations on first page */
+    .live-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #ecfdf5; color: #047857;
+      font-size: 0.7rem; font-weight: 800;
+      padding: 4px 10px; border-radius: 999px;
+      letter-spacing: 0.02em;
+      animation: liveGlow 2.5s ease-in-out infinite;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #10b981;
+      box-shadow: 0 0 0 0 rgba(16,185,129,0.5);
+      animation: liveDot 1.5s ease-out infinite;
+    }
+    @keyframes liveDot {
+      0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+    @keyframes liveGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+      50% { box-shadow: 0 0 12px rgba(16,185,129,0.25); }
+    }
+    .pill {
+      animation: pillFloat 4s ease-in-out infinite;
+    }
+    .pill:nth-child(1) { animation-delay: 0s; }
+    .pill:nth-child(2) { animation-delay: 0.4s; }
+    .pill:nth-child(3) { animation-delay: 0.8s; }
+    .pill:nth-child(4) { animation-delay: 1.2s; }
+    @keyframes pillFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    .map-floating-tabs {
+      animation: fadeUp .5s ease .15s both;
+    }
+    .sidebar-header h2 .ti {
+      animation: iconPulse 3s ease-in-out infinite;
+    }
+    @keyframes iconPulse {
+      0%, 100% { box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+      50% { box-shadow: 0 4px 20px rgba(37,99,235,0.5); }
+    }
+    .btn-primary {
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      50%, 100% { left: 120%; }
+    }
+    .live-flash { animation: liveGlow 0.8s ease; }
+
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="https://nwqp.neonweb.tech/home" class="brand">
+      <img src="https://nwqp.neonweb.tech/assets/img/unesco-logo.png" alt="UNESCO" style="height:26px" onerror="this.style.display='none'">
+      <img src="https://nwqp.neonweb.tech/assets/img/pcrwr-logo.png" alt="PCRWR" style="height:32px" onerror="this.style.display='none'">
+      <div class="brand-text">PCRWR <span>| National Water Quality Portal</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="nav-page active" data-page="geo"><i class="ti ti-current-location"></i> <span>Geo Graphic Info</span></a>
+      <a href="#" class="nav-page" data-page="detail"><i class="ti ti-table"></i> <span>Detail Report</span></a>
+      <a href="#" class="nav-page" data-page="stats"><i class="ti ti-chart-histogram"></i> <span>Statistics</span></a>
+      <a href="#" class="nav-page nav-ai" data-page="ai"><i class="ti ti-robot"></i> <span>AI Agent</span></a>
+      <a href="#" class="nav-feedback" id="btn-feedback"><i class="ti ti-message"></i> <span>Feedback</span></a>
+    </div>
+  </nav>
+
+  <div class="toolbar">
+    <div class="toolbar-title">
+      Ground Water
+      <span class="src-count" id="src-count">442 / 442 Sources</span>
+      <span class="live-pill" id="live-pill"><span class="live-dot"></span> Live</span>
+    </div>
+    <div class="pills">
+      <span class="pill pill-safe"><i class="ti ti-circle-check"></i> Safe <strong id="pill-safe">160</strong></span>
+      <span class="pill pill-unsafe"><i class="ti ti-alert-triangle"></i> Unsafe <strong id="pill-unsafe">282</strong></span>
+      <span class="pill pill-critical"><i class="ti ti-alert-octagon"></i> Critical <strong id="pill-critical">5</strong></span>
+      <span class="pill pill-total"><i class="ti ti-droplet"></i> <strong id="pill-total">442</strong></span>
+    </div>
+    <div class="search-wrap">
+      <i class="ti ti-search"></i>
+      <input type="text" id="search" placeholder="Search locations..." />
+    </div>
+    <button class="btn btn-outline" id="btn-filters"><i class="ti ti-filter"></i> Filters</button>
+    <button class="btn btn-primary" id="btn-refresh"><i class="ti ti-refresh"></i> Refresh Data</button>
+  </div>
+
+  <div class="filters-backdrop" id="filters-backdrop"></div>
+  <!-- FILTERS PANEL (original-style) -->
+  <div class="filters-drawer" id="filters-panel">
+    <div class="filters-drawer-head">
+      <button type="button" class="filters-close" id="btn-filters-close" title="Close"><i class="ti ti-x"></i></button>
+      <div style="flex:1">
+        <div class="filters-title">Filters</div>
+        <div style="font-size:0.72rem;opacity:0.85;font-weight:500;margin-top:2px">Refine map sources</div>
+      </div>
+      <button type="button" class="btn btn-primary filters-apply-top" id="btn-filter-apply"><i class="ti ti-check"></i> Apply</button>
+    </div>
+    <div class="filters-drawer-body">
+      <button type="button" class="filter-row" data-open="source">
+        <span class="fr-icon"><i class="ti ti-stack-2"></i></span>
+        <span class="fr-text"><strong>Source Group</strong> <em id="lbl-source">( Ground Water )</em></span>
+        <i class="ti ti-chevron-right fr-arrow"></i>
+      </button>
+      <div class="filter-expand" id="exp-source">
+        <label class="fe-opt"><input type="radio" name="f-source" value="all" /> All Sources</label>
+        <label class="fe-opt"><input type="radio" name="f-source" value="gw" checked /> Ground Water</label>
+        <label class="fe-opt"><input type="radio" name="f-source" value="sw" /> Surface Water</label>
+        <label class="fe-opt"><input type="radio" name="f-source" value="dw" /> Drinking Water</label>
+      </div>
+
+      <button type="button" class="filter-row" data-open="region">
+        <span class="fr-icon"><i class="ti ti-map-pin"></i></span>
+        <span class="fr-text"><strong>Region</strong> <em id="lbl-region">( Select Region )</em></span>
+        <i class="ti ti-chevron-right fr-arrow"></i>
+      </button>
+      <div class="filter-expand" id="exp-region">
+        <label class="fe-opt"><input type="radio" name="f-region" value="all" checked /> All Pakistan</label>
+        <label class="fe-opt"><input type="radio" name="f-region" value="Punjab" /> Punjab</label>
+        <label class="fe-opt"><input type="radio" name="f-region" value="Sindh" /> Sindh</label>
+        <label class="fe-opt"><input type="radio" name="f-region" value="KPK" /> Khyber Pakhtunkhwa</label>
+        <label class="fe-opt"><input type="radio" name="f-region" value="Balochistan" /> Balochistan</label>
+        <label class="fe-opt"><input type="radio" name="f-region" value="Islamabad" /> Islamabad / ICT</label>
+      </div>
+
+      <button type="button" class="filter-row" data-open="city">
+        <span class="fr-icon"><i class="ti ti-building"></i></span>
+        <span class="fr-text"><strong>City</strong> <em id="lbl-city">( Select City )</em></span>
+        <i class="ti ti-chevron-right fr-arrow"></i>
+      </button>
+      <div class="filter-expand" id="exp-city">
+        <label class="fe-opt"><input type="radio" name="f-city" value="all" checked /> All Cities</label>
+        <label class="fe-opt"><input type="radio" name="f-city" value="Lahore" /> Lahore</label>
+        <label class="fe-opt"><input type="radio" name="f-city" value="Karachi" /> Karachi</label>
+        <label class="fe-opt"><input type="radio" name="f-city" value="Islamabad" /> Islamabad</label>
+        <label class="fe-opt"><input type="radio" name="f-city" value="Peshawar" /> Peshawar</label>
+        <label class="fe-opt"><input type="radio" name="f-city" value="Quetta" /> Quetta</label>
+        <label class="fe-opt"><input type="radio" name="f-city" value="Multan" /> Multan</label>
+        <label class="fe-opt"><input type="radio" name="f-city" value="Hyderabad" /> Hyderabad</label>
+      </div>
+
+      <button type="button" class="filter-row" data-open="param">
+        <span class="fr-icon"><i class="ti ti-layout-grid"></i></span>
+        <span class="fr-text"><strong>Parameters</strong> <em id="lbl-param">( All )</em></span>
+        <i class="ti ti-chevron-right fr-arrow"></i>
+      </button>
+      <div class="filter-expand" id="exp-param">
+        <label class="fe-opt"><input type="radio" name="f-param" value="all" checked /> All Parameters</label>
+        <label class="fe-opt"><input type="radio" name="f-param" value="arsenic" /> Arsenic</label>
+        <label class="fe-opt"><input type="radio" name="f-param" value="fluoride" /> Fluoride</label>
+        <label class="fe-opt"><input type="radio" name="f-param" value="nitrate" /> Nitrate</label>
+        <label class="fe-opt"><input type="radio" name="f-param" value="tds" /> TDS</label>
+        <label class="fe-opt"><input type="radio" name="f-param" value="bacteria" /> Bacteriological</label>
+      </div>
+
+      <button type="button" class="filter-row" data-open="year">
+        <span class="fr-icon"><i class="ti ti-calendar"></i></span>
+        <span class="fr-text"><strong>Year</strong> <em id="lbl-year">( All Years )</em></span>
+        <i class="ti ti-chevron-right fr-arrow"></i>
+      </button>
+      <div class="filter-expand" id="exp-year">
+        <div class="year-tabs-v">
+          <button type="button" class="year-tab-v active" data-year="all">All</button>
+          <button type="button" class="year-tab-v" data-year="2025">2025</button>
+          <button type="button" class="year-tab-v" data-year="2024">2024</button>
+          <button type="button" class="year-tab-v" data-year="2023">2023</button>
+          <button type="button" class="year-tab-v" data-year="2022">2022</button>
+          <button type="button" class="year-tab-v" data-year="2021">2021</button>
+        </div>
+      </div>
+
+      <div class="show-results-block">
+        <div class="filter-label-plain">Show Results</div>
+        <div class="result-radios">
+          <label><input type="radio" name="f-status" value="all" checked /> All Sources</label>
+          <label><input type="radio" name="f-status" value="1" /> Safe</label>
+          <label><input type="radio" name="f-status" value="2" /> Unsafe</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2><i class="ti ti-map-2"></i> Geographic Info</h2>
+        <p>Explore sources, layers & critical zones</p>
+      </div>
+      <div class="geo-tabs">
+        <button class="geo-tab" data-panel="overview"><i class="ti ti-layout-dashboard"></i> Overview</button>
+        <button class="geo-tab" data-panel="layers"><i class="ti ti-stack-2"></i> Layers</button>
+        <button class="geo-tab" data-panel="critical"><i class="ti ti-alert-triangle"></i> Critical</button>
+        <button class="geo-tab" data-panel="stats"><i class="ti ti-chart-donut"></i> Analysis</button>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel active" id="panel-empty" style="text-align:center;padding:48px 16px;color:var(--muted);">
+          <div style="width:56px;height:56px;margin:0 auto 14px;border-radius:16px;background:linear-gradient(135deg,#fbbf24,#f59e0b);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(245,158,11,0.35);">
+            <i class="ti ti-hand-click" style="font-size:1.5rem;color:#fff;"></i>
+          </div>
+          <p style="font-size:0.92rem;font-weight:800;color:#0f172a;margin:0 0 6px;">Choose a tab</p>
+          <p style="font-size:0.74rem;margin:0;line-height:1.5;color:#64748b;">Overview · Layers · Critical · Analysis</p>
+        </div>
+
+        <!-- OVERVIEW -->
+        <div class="tab-panel" id="panel-overview">
+          <div class="quick-stats">
+            <div class="qs total"><div class="qs-val" id="ov-total">442</div><div class="qs-lbl">Total Sources</div></div>
+            <div class="qs safe"><div class="qs-val" id="ov-safe">160</div><div class="qs-lbl">Safe</div></div>
+            <div class="qs unsafe"><div class="qs-val" id="ov-unsafe">282</div><div class="qs-lbl">Unsafe</div></div>
+            <div class="qs critical"><div class="qs-val" id="ov-critical">8</div><div class="qs-lbl">Critical Zones</div></div>
+          </div>
+          <p class="ca-hint" style="margin-top:14px">Click <strong>Layers</strong>, <strong>Critical</strong> or <strong>Analysis</strong> for details.</p>
+        </div>
+
+        <div class="tab-panel" id="panel-layers">
+          <div class="section-label"><i class="ti ti-map-pin"></i> Marker Layers</div>
+          <label class="layer-row">
+            <span class="layer-label"><span class="layer-dot safe"></span> Safe Locations <span class="layer-count" id="lc-safe">160</span></span>
+            <span class="switch"><input type="checkbox" id="toggle-safe" checked><span class="slider"></span></span>
+          </label>
+          <label class="layer-row">
+            <span class="layer-label"><span class="layer-dot unsafe"></span> Unsafe Locations <span class="layer-count" id="lc-unsafe">282</span></span>
+            <span class="switch"><input type="checkbox" id="toggle-unsafe" checked><span class="slider"></span></span>
+          </label>
+          <div class="divider"></div>
+          <div class="section-label"><i class="ti ti-chart-bubble"></i> Area Health Score <span class="badge-new">NEW</span></div>
+          <label class="layer-row">
+            <span class="layer-label">Show aggregated health zones</span>
+            <span class="switch"><input type="checkbox" id="toggle-area"><span class="slider"></span></span>
+          </label>
+          <p class="hint">Colour circles by % safe in each area.</p>
+          <div class="divider"></div>
+          <div class="section-label"><i class="ti ti-map-2"></i> Base Map Style</div>
+          <div class="basemap-row">
+            <button class="basemap-btn active" data-bm="streets"><i class="ti ti-road"></i> Streets</button>
+            <button class="basemap-btn" data-bm="satellite"><i class="ti ti-satellite"></i> Satellite</button>
+            <button class="basemap-btn" data-bm="dark"><i class="ti ti-moon"></i> Dark</button>
+          </div>
+        </div>
+
+        <!-- CRITICAL -->
+        <div class="tab-panel" id="panel-critical">
+          <p class="ca-hint">Ranked high-risk zones. Click a row to jump on map.</p>
+          <ul class="ca-list" id="ca-list"><li class="ca-empty">Loading…</li></ul>
+          <button type="button" class="add-ca-btn" id="btn-add-ca"><i class="ti ti-plus"></i> Add Critical Area</button>
+        </div>
+
+        <!-- ANALYSIS -->
+        <div class="tab-panel" id="panel-stats">
+          <div class="stat-block">
+            <h4>Safe for Drinking Analysis</h4>
+            <div class="donut-wrap">
+              <div class="donut" id="donut" style="--safe-pct: 36%">
+                <div class="donut-inner">
+                  <div class="donut-val" id="donut-val">36%</div>
+                  <div class="donut-lbl">Safe</div>
+                </div>
+              </div>
+              <div>
+                <div class="legend-item"><span class="legend-dot" style="background:#22c55e"></span> Safe <strong id="leg-safe">36%</strong></div>
+                <div class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Unsafe <strong id="leg-unsafe">64%</strong></div>
+              </div>
+            </div>
+            <div class="stat-chips">
+              <div class="chip"><div class="chip-val" id="chip-total">442</div><div class="chip-lbl">Total Sources</div></div>
+              <div class="chip"><div class="chip-val" style="color:var(--safe)" id="chip-safe">160</div><div class="chip-lbl">Safe</div></div>
+              <div class="chip"><div class="chip-val" style="color:var(--unsafe)" id="chip-unsafe">282</div><div class="chip-lbl">Unsafe</div></div>
+              <div class="chip"><div class="chip-val" style="color:#b91c1c" id="chip-critical">8</div><div class="chip-lbl">Critical Zones</div></div>
+            </div>
+          </div>
+          <p class="ca-hint" style="margin-top:8px"><strong id="insight-pct">36%</strong> sources meet safe drinking standards.</p>
+        </div>
+
+      </div>
+    </aside>
+
+    <div class="map-wrap">
+      <button type="button" class="sidebar-toggle" id="sidebar-toggle" title="Toggle Geographic Info">
+        <i class="ti ti-layout-sidebar-left-collapse" id="sidebar-toggle-icon"></i>
+      </button>
+      <div class="map-floating-tabs">
+        <button class="map-ftab active" data-view="overview">Map Overview</button>
+        <button class="map-ftab" data-view="layers">Map Layers</button>
+        <button class="map-ftab" data-view="stats">Statistics</button>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    
+  </div>
+
+  
+  <!-- DETAIL REPORT PAGE -->
+  <div class="page-view" id="page-detail">
+    <div class="page-card dr-page">
+      <div class="dr-header">
+        <div>
+          <h2><i class="ti ti-table"></i> Detail Report</h2>
+          <p class="sub">Source-level listing from dummy dataset</p>
+        </div>
+        <div class="dr-header-stats">
+          <div class="dr-mini"><span class="dr-mini-val" id="dr-total">442</span><span class="dr-mini-lbl">Total</span></div>
+          <div class="dr-mini safe"><span class="dr-mini-val" id="dr-safe">160</span><span class="dr-mini-lbl">Safe</span></div>
+          <div class="dr-mini unsafe"><span class="dr-mini-val" id="dr-unsafe">282</span><span class="dr-mini-lbl">Unsafe</span></div>
+        </div>
+      </div>
+
+      <div class="report-tabs" id="dr-tabs">
+        <button type="button" class="report-tab active" data-drtab="detail">Detail Report</button>
+        <button type="button" class="report-tab" data-drtab="summary">Summarize Report</button>
+        <button type="button" class="report-tab" data-drtab="param">Parameterized</button>
+      </div>
+
+      <div class="dr-panel active" id="dr-panel-detail">
+        <div class="report-filters">
+          <select id="filter-status">
+            <option value="all">All Status</option>
+            <option value="1">Safe only</option>
+            <option value="2">Unsafe only</option>
+          </select>
+          <input type="search" id="filter-search" placeholder="Search location..." />
+          <span class="dr-count" id="detail-count">0 rows</span>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Location</th>
+                <th>Region</th>
+                <th>Lat</th>
+                <th>Lng</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="detail-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dr-panel" id="dr-panel-summary">
+        <div class="summary-grid">
+          <div class="summary-card">
+            <div class="sc-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)"><i class="ti ti-droplet" style="color:#2563eb"></i></div>
+            <div class="sc-val" id="sum-total">442</div>
+            <div class="sc-lbl">Total Sources</div>
+          </div>
+          <div class="summary-card">
+            <div class="sc-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0)"><i class="ti ti-shield-check" style="color:#059669"></i></div>
+            <div class="sc-val" style="color:#059669" id="sum-safe">160</div>
+            <div class="sc-lbl">Safe</div>
+          </div>
+          <div class="summary-card">
+            <div class="sc-icon" style="background:linear-gradient(135deg,#ffe4e6,#fecdd3)"><i class="ti ti-alert-triangle" style="color:#e11d48"></i></div>
+            <div class="sc-val" style="color:#e11d48" id="sum-unsafe">282</div>
+            <div class="sc-lbl">Unsafe</div>
+          </div>
+          <div class="summary-card">
+            <div class="sc-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a)"><i class="ti ti-percentage" style="color:#d97706"></i></div>
+            <div class="sc-val" style="color:#d97706" id="sum-pct">36%</div>
+            <div class="sc-lbl">Safe Rate</div>
+          </div>
+        </div>
+        <div class="summary-note">
+          <i class="ti ti-info-circle"></i>
+          Summary aggregates all sources in the current dummy dataset. Connect live API for real-time provincial breakdowns.
+        </div>
+      </div>
+
+      <div class="dr-panel" id="dr-panel-param">
+        <div class="param-list">
+          <div class="param-row"><span class="param-name">Arsenic</span><div class="param-bar"><div style="width:68%;background:#f43f5e"></div></div><span class="param-pct">68% exceed</span></div>
+          <div class="param-row"><span class="param-name">Fluoride</span><div class="param-bar"><div style="width:42%;background:#f59e0b"></div></div><span class="param-pct">42% exceed</span></div>
+          <div class="param-row"><span class="param-name">Nitrate</span><div class="param-bar"><div style="width:35%;background:#f59e0b"></div></div><span class="param-pct">35% exceed</span></div>
+          <div class="param-row"><span class="param-name">TDS</span><div class="param-bar"><div style="width:55%;background:#f43f5e"></div></div><span class="param-pct">55% exceed</span></div>
+          <div class="param-row"><span class="param-name">Bacteriological</span><div class="param-bar"><div style="width:28%;background:#10b981"></div></div><span class="param-pct">28% exceed</span></div>
+        </div>
+        <div class="summary-note"><i class="ti ti-flask"></i> Parameter exceedance is illustrative (frontend demo).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATISTICS PAGE -->
+  <div class="page-view" id="page-stats">
+    <div class="page-card st-page">
+      <div class="dr-header">
+        <div>
+          <h2><i class="ti ti-chart-histogram"></i> Statistics</h2>
+          <p class="sub">National groundwater quality overview</p>
+        </div>
+        <div class="st-badge-live"><span class="pulse-green"></span> Live demo data</div>
+      </div>
+
+      <div class="stats-grid st-hero">
+        <div class="stats-box st-box-total">
+          <div class="st-box-icon"><i class="ti ti-droplet"></i></div>
+          <div class="num" id="st-total">442</div>
+          <div class="lbl">Total Sources</div>
+        </div>
+        <div class="stats-box st-box-safe">
+          <div class="st-box-icon"><i class="ti ti-shield-check"></i></div>
+          <div class="num" id="st-safe">160</div>
+          <div class="lbl">Safe</div>
+        </div>
+        <div class="stats-box st-box-unsafe">
+          <div class="st-box-icon"><i class="ti ti-alert-triangle"></i></div>
+          <div class="num" id="st-unsafe">282</div>
+          <div class="lbl">Unsafe</div>
+        </div>
+        <div class="stats-box st-box-pct">
+          <div class="st-box-icon"><i class="ti ti-chart-pie"></i></div>
+          <div class="num" id="st-pct">36%</div>
+          <div class="lbl">Safe Rate</div>
+        </div>
+      </div>
+
+      <div class="st-charts-row">
+        <div class="st-card st-chart-card">
+          <h3><i class="ti ti-chart-donut"></i> Composition</h3>
+          <div class="st-donut-wrap">
+            <div class="st-donut" id="st-donut" style="--safe-pct:36%">
+              <div class="st-donut-inner"><strong id="st-donut-val">36%</strong><span>Safe</span></div>
+            </div>
+            <div class="st-donut-legend">
+              <div class="st-leg"><span class="st-leg-dot" style="background:#10b981"></span> Safe <strong id="leg-st-safe">160</strong></div>
+              <div class="st-leg"><span class="st-leg-dot" style="background:#f43f5e"></span> Unsafe <strong id="leg-st-unsafe">282</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="st-card st-chart-card">
+          <h3><i class="ti ti-chart-bar"></i> Safe vs Unsafe</h3>
+          <div class="bar-row">
+            <span class="bar-label">Safe</span>
+            <div class="bar-track"><div class="bar-fill bar-anim" id="bar-safe" style="width:36%;background:linear-gradient(90deg,#34d399,#10b981)"></div></div>
+            <span id="bar-safe-lbl" class="bar-pct">36%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Unsafe</span>
+            <div class="bar-track"><div class="bar-fill bar-anim" id="bar-unsafe" style="width:64%;background:linear-gradient(90deg,#fb7185,#f43f5e)"></div></div>
+            <span id="bar-unsafe-lbl" class="bar-pct">64%</span>
+          </div>
+          <div class="st-hbar-group">
+            <div class="st-hbar-title">Relative volume</div>
+            <div class="st-hbar-stack">
+              <div class="st-hbar-seg safe" id="hbar-safe" style="width:36%"></div>
+              <div class="st-hbar-seg unsafe" id="hbar-unsafe" style="width:64%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="st-charts-row">
+        <div class="st-card st-chart-card">
+          <h3><i class="ti ti-chart-line"></i> Trend (demo)</h3>
+          <div class="st-line-chart" id="st-line-chart">
+            <svg viewBox="0 0 320 120" preserveAspectRatio="none" class="st-svg">
+              <defs>
+                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path id="st-area" fill="url(#areaGrad)" d="M0,90 L53,75 L106,80 L160,55 L213,60 L266,40 L320,45 L320,120 L0,120 Z"/>
+              <path id="st-line" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                d="M0,90 L53,75 L106,80 L160,55 L213,60 L266,40 L320,45"/>
+              <circle cx="320" cy="45" r="4" fill="#2563eb" class="st-line-dot"/>
+            </svg>
+            <div class="st-line-labels">
+              <span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="st-card st-chart-card">
+          <h3><i class="ti ti-bulb"></i> Quick insights</h3>
+          <ul class="st-insights">
+            <li><i class="ti ti-circle-filled" style="color:#10b981"></i> <span id="ins-safe">160</span> sources meet PCRWR / WHO guidelines</li>
+            <li><i class="ti ti-circle-filled" style="color:#f43f5e"></i> <span id="ins-unsafe">282</span> sources need intervention</li>
+            <li><i class="ti ti-circle-filled" style="color:#f59e0b"></i> Critical zones prioritise field sampling</li>
+            <li><i class="ti ti-circle-filled" style="color:#2563eb"></i> Use map layers + filters for regional focus</li>
+          </ul>
+        </div>
+      </div>
+      <p class="st-foot">Frontend demo — connect backend for live provincial & parameter statistics.</p>
+    </div>
+  </div>
+
+  <!-- AI AGENT PAGE -->
+  <div class="page-view" id="page-ai">
+    <div class="ai-layout">
+      <div class="ai-hero">
+        <div class="ai-hero-glow"></div>
+        <div class="ai-badge"><span class="ai-pulse-dot"></span> Online · PCRWR Water Intelligence</div>
+        <h2><i class="ti ti-robot"></i> AI Water Quality Agent</h2>
+        <p>Ask about safe zones, critical areas, standards, or prioritisation — powered by your portal data.</p>
+      </div>
+      <div class="ai-chat" id="ai-chat">
+        <div class="ai-msg bot">
+          <div class="ai-avatar"><i class="ti ti-robot"></i></div>
+          <div class="ai-bubble">
+            <strong>Assalam-o-Alaikum.</strong> Main PCRWR Water Quality Agent hoon.
+            Aap pooch sakte ho: safe vs unsafe counts, critical zones, ya kis region pe pehle kaam karein.
+          </div>
+        </div>
+      </div>
+      <div class="ai-suggestions" id="ai-suggestions">
+        <button type="button" class="ai-chip" data-q="How many sources are unsafe?">Unsafe sources?</button>
+        <button type="button" class="ai-chip" data-q="List critical zones">Critical zones</button>
+        <button type="button" class="ai-chip" data-q="What is the safe rate?">Safe rate %</button>
+        <button type="button" class="ai-chip" data-q="Where should we prioritise testing?">Prioritise testing</button>
+      </div>
+      <form class="ai-input-row" id="ai-form">
+        <input type="text" id="ai-input" placeholder="Ask about groundwater quality..." autocomplete="off" />
+        <button type="submit" class="btn btn-primary ai-send"><i class="ti ti-send"></i></button>
+      </form>
+    </div>
+  </div>
+
+<div class="modal-overlay" id="add-modal">
+    <div class="modal">
+      <div class="modal-head">
+        <h3><i class="ti ti-alert-triangle"></i> Add Critical Area</h3>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-g">
+          <label>Area / Location Name *</label>
+          <input type="text" id="ca-name" placeholder="e.g. Bikaner Industrial Zone" />
+        </div>
+        <div class="form-row">
+          <div class="form-g"><label>Latitude *</label><input type="number" id="ca-lat" step="0.0001" placeholder="28.0229" /></div>
+          <div class="form-g"><label>Longitude *</label><input type="number" id="ca-lng" step="0.0001" placeholder="73.3119" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-g"><label>Unsafe %</label><input type="number" id="ca-unsafe" min="1" max="100" value="85" /></div>
+          <div class="form-g"><label>Total Sources</label><input type="number" id="ca-total" min="1" value="12" /></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-outline" id="modal-cancel">Cancel</button>
+        <button class="btn btn-danger" id="modal-save"><i class="ti ti-plus"></i> Add Area</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    function generatePoints(total, safeCount) {
+      const points = [], status = [], locations = [];
+      const clusters = [
+        { lat: 28.02, lng: 73.31, name: 'Bikaner Zone', w: 4 },
+        { lat: 27.95, lng: 73.55, name: 'Rajasthan Border', w: 3 },
+        { lat: 29.40, lng: 71.68, name: 'Bahawalpur Zone', w: 3 },
+        { lat: 30.15, lng: 71.52, name: 'Multan Zone', w: 2 },
+        { lat: 25.40, lng: 68.35, name: 'Hyderabad Zone', w: 3 },
+        { lat: 24.90, lng: 67.10, name: 'Karachi Zone', w: 2 },
+        { lat: 26.25, lng: 68.30, name: 'Sindh Interior', w: 2 },
+        { lat: 31.45, lng: 74.30, name: 'Lahore Zone', w: 1 },
+        { lat: 28.55, lng: 77.15, name: 'Delhi / NCR', w: 1 }
+      ];
+      const weighted = [];
+      clusters.forEach(c => { for (let i = 0; i < c.w; i++) weighted.push(c); });
+      for (let i = 0; i < total; i++) {
+        const c = weighted[i % weighted.length];
+        points.push([c.lat + (Math.random() - 0.5) * 0.45, c.lng + (Math.random() - 0.5) * 0.45]);
+        status.push(i < safeCount ? 1 : 2);
+        locations.push(c.name + ' #' + (i + 1));
+      }
+      for (let i = 0; i < total; i++) if (Math.random() < 0.12) status[i] = status[i] === 1 ? 2 : 1;
+      let cur = status.filter(s => s === 1).length;
+      if (cur > safeCount) { for (let i = 0; i < total && cur > safeCount; i++) if (status[i] === 1) { status[i] = 2; cur--; } }
+      else { for (let i = 0; i < total && cur < safeCount; i++) if (status[i] === 2) { status[i] = 1; cur++; } }
+      return { points, status, locations };
+    }
+
+    const DATA = generatePoints(442, 160);
+    let manualCritical = [
+      { lat: 28.02, lng: 73.31, label: 'Bikaner High Risk Zone', unsafePct: 92, total: 18 },
+      { lat: 25.40, lng: 68.35, label: 'Hyderabad Industrial Belt', unsafePct: 88, total: 24 },
+      { lat: 24.86, lng: 67.00, label: 'Karachi Coastal Cluster', unsafePct: 81, total: 15 }
+    ];
+
+    let map, safeLG, unsafeLG, pulseLG, areaLG, mapPoints = [], baseLayer, bases = {};
+
+    function initMap() {
+      map = L.map('map', { zoomControl: false }).setView([28.5, 70.5], 6);
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+      bases.streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OSM' });
+      bases.satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: '© Esri' });
+      bases.dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19, attribution: '© Carto' });
+      baseLayer = bases.streets.addTo(map);
+      safeLG = L.layerGroup().addTo(map);
+      unsafeLG = L.layerGroup().addTo(map);
+      pulseLG = L.layerGroup().addTo(map);
+      areaLG = L.layerGroup();
+      loadMarkers();
+      refreshCritical();
+      updateAllStats();
+    }
+
+    function pinIcon(safe) {
+      const c = safe ? '#22c55e' : '#ef4444';
+      return L.divIcon({
+        className: '',
+        html: '<div style="width:20px;height:20px;background:' + c + ';border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,.35);position:relative"><div style="width:6px;height:6px;background:#fff;border-radius:50%;position:absolute;top:5px;left:5px"></div></div>',
+        iconSize: [20, 20], iconAnchor: [10, 20], popupAnchor: [0, -20]
+      });
+    }
+
+    function loadMarkers() {
+      loadMarkersFiltered();
+    }
+
+    function getAreaCells(grid) {
+      grid = grid || 0.7;
+      if (!mapPoints.length) return [];
+      const cells = {};
+      mapPoints.forEach(function (p) {
+        const la = Math.round(p.lat / grid) * grid;
+        const ln = Math.round(p.lng / grid) * grid;
+        const k = la + '_' + ln;
+        if (!cells[k]) cells[k] = { lat: la, lng: ln, safe: 0, unsafe: 0, label: p.loc };
+        if (p.status === 1) cells[k].safe++;
+        else { cells[k].unsafe++; cells[k].label = cells[k].label || p.loc; }
+      });
+      return Object.keys(cells).map(function (k) {
+        const c = cells[k];
+        const total = c.safe + c.unsafe;
+        const safePct = Math.round((c.safe / total) * 100);
+        return {
+          lat: c.lat, lng: c.lng, safe: c.safe, unsafe: c.unsafe, total: total, safePct: safePct,
+          color: safePct >= 70 ? '#22c55e' : safePct >= 40 ? '#f59e0b' : '#ef4444',
+          label: c.label || (c.lat.toFixed(2) + ', ' + c.lng.toFixed(2))
+        };
+      });
+    }
+
+    function buildAreaLayer() {
+      areaLG.clearLayers();
+      getAreaCells().forEach(function (cell) {
+        const r = 14 + Math.min(cell.total, 25) * 1.8;
+        L.circleMarker([cell.lat, cell.lng], {
+          radius: r, color: cell.color, weight: 2, fillColor: cell.color, fillOpacity: 0.45
+        }).bindTooltip('<strong>' + cell.safePct + '% Safe</strong><br>' + cell.total + ' sources', { direction: 'top' }).addTo(areaLG);
+      });
+    }
+
+    function rankColor(i) {
+      return ['#dc2626', '#e64545', '#ef4444', '#f0655d', '#f3837c'][i] || '#f3837c';
+    }
+    function esc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function refreshCritical() {
+      const list = document.getElementById('ca-list');
+      const auto = getAreaCells()
+        .filter(function (c) { return c.unsafe > 0; })
+        .sort(function (a, b) {
+          const ua = 100 - a.safePct, ub = 100 - b.safePct;
+          return ub !== ua ? ub - ua : b.unsafe - a.unsafe;
+        })
+        .slice(0, 5)
+        .map(function (c) {
+          return { lat: c.lat, lng: c.lng, label: c.label, unsafePct: 100 - c.safePct, total: c.total, isManual: false };
+        });
+      const combined = manualCritical.map(function (m) {
+        return { lat: m.lat, lng: m.lng, label: m.label, unsafePct: m.unsafePct, total: m.total, isManual: true };
+      }).concat(auto).slice(0, 8);
+
+      if (!combined.length) {
+        list.innerHTML = '<li class="ca-empty">No unsafe zones detected.</li>';
+        document.getElementById('pill-critical').textContent = '0';
+        document.getElementById('ov-critical').textContent = '0';
+        document.getElementById('chip-critical').textContent = '0';
+        return;
+      }
+      list.innerHTML = '';
+      combined.forEach(function (item, i) {
+        const li = document.createElement('li');
+        li.className = 'ca-row';
+        li.innerHTML =
+          '<span class="ca-rank" style="background:' + rankColor(i) + '">#' + (i + 1) + '</span>' +
+          '<span class="ca-info">' +
+            '<span class="ca-label">' + esc(item.label) + (item.isManual ? ' <small style="color:#b91c1c">(added)</small>' : '') + '</span>' +
+            '<span class="ca-meta"><span class="pct">' + item.unsafePct + '% unsafe</span> · ' + item.total + ' sources</span>' +
+            '<span class="ca-bar"><span class="ca-bar-fill" style="width:' + item.unsafePct + '%"></span></span>' +
+          '</span>' +
+          '<span class="ti ti-map-pin ca-pin"></span>';
+        li.addEventListener('click', function () { map.flyTo([item.lat, item.lng], 10, { duration: 0.9 }); });
+        list.appendChild(li);
+      });
+      const n = combined.length;
+      document.getElementById('pill-critical').textContent = n;
+      document.getElementById('ov-critical').textContent = n;
+      document.getElementById('chip-critical').textContent = n;
+    }
+
+    function updateAllStats() {
+      const safe = DATA.status.filter(function (s) { return s === 1; }).length;
+      const unsafe = DATA.status.length - safe;
+      const total = DATA.status.length;
+      const pct = Math.round((safe / total) * 100);
+      ['pill-safe', 'ov-safe', 'r-safe', 'chip-safe', 'lc-safe'].forEach(function (id) {
+        var el = document.getElementById(id); if (el) el.textContent = safe;
+      });
+      ['pill-unsafe', 'ov-unsafe', 'r-unsafe', 'chip-unsafe', 'lc-unsafe'].forEach(function (id) {
+        var el = document.getElementById(id); if (el) el.textContent = unsafe;
+      });
+      ['pill-total', 'ov-total', 'r-total', 'chip-total'].forEach(function (id) {
+        var el = document.getElementById(id); if (el) el.textContent = total;
+      });
+      document.getElementById('src-count').textContent = total + ' / ' + total + ' Sources';
+      document.getElementById('donut').style.setProperty('--safe-pct', pct + '%');
+      document.getElementById('donut-val').textContent = pct + '%';
+      document.getElementById('leg-safe').textContent = pct + '%';
+      document.getElementById('leg-unsafe').textContent = (100 - pct) + '%';
+      document.getElementById('insight-pct').textContent = pct + '%';
+      var lu = document.getElementById('last-updated'); if (lu) lu.textContent = 'Updated: ' + new Date().toLocaleString();
+    }
+
+    document.querySelectorAll('.geo-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.geo-tab').forEach(function (t) { t.classList.remove('active'); });
+        document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+        tab.classList.add('active');
+        var panel = document.getElementById('panel-' + tab.dataset.panel);
+        if (panel) panel.classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.map-ftab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.map-ftab').forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        var target = tab.dataset.view === 'stats' ? 'stats' : (tab.dataset.view === 'layers' ? 'layers' : 'overview');
+        document.querySelectorAll('.geo-tab').forEach(function (t) {
+          t.classList.toggle('active', t.dataset.panel === target);
+        });
+        document.querySelectorAll('.tab-panel').forEach(function (p) {
+          p.classList.toggle('active', p.id === 'panel-' + target);
+        });
+      });
+    });
+
+    document.getElementById('toggle-safe').addEventListener('change', function () {
+      this.checked ? map.addLayer(safeLG) : map.removeLayer(safeLG);
+    });
+    document.getElementById('toggle-unsafe').addEventListener('change', function () {
+      if (this.checked) { map.addLayer(unsafeLG); map.addLayer(pulseLG); }
+      else { map.removeLayer(unsafeLG); map.removeLayer(pulseLG); }
+    });
+    document.getElementById('toggle-area').addEventListener('change', function () {
+      if (this.checked) {
+        buildAreaLayer(); map.addLayer(areaLG);
+        map.removeLayer(safeLG); map.removeLayer(unsafeLG); map.removeLayer(pulseLG);
+      } else {
+        map.removeLayer(areaLG);
+        if (document.getElementById('toggle-safe').checked) map.addLayer(safeLG);
+        if (document.getElementById('toggle-unsafe').checked) { map.addLayer(unsafeLG); map.addLayer(pulseLG); }
+      }
+    });
+
+    document.querySelectorAll('.basemap-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.basemap-btn').forEach(function (b) { b.classList.remove('active'); });
+        this.classList.add('active');
+        map.removeLayer(baseLayer);
+        baseLayer = bases[this.dataset.bm];
+        baseLayer.addTo(map);
+      });
+    });
+
+    document.getElementById('btn-refresh').addEventListener('click', function () {
+      var btn = this;
+      btn.classList.add('spinning');
+      loadMarkers(); refreshCritical(); updateAllStats();
+      setTimeout(function () { btn.classList.remove('spinning'); }, 600);
+    });
+
+    document.getElementById('search').addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      var q = e.target.value.trim().toLowerCase();
+      if (!q) return;
+      var found = mapPoints.find(function (p) { return p.loc.toLowerCase().indexOf(q) !== -1; });
+      if (found) map.flyTo([found.lat, found.lng], 11);
+      else alert('No matching location found.');
+    });
+
+    var modal = document.getElementById('add-modal');
+    document.getElementById('btn-add-ca').addEventListener('click', function () { modal.classList.add('open'); });
+    document.getElementById('modal-close').addEventListener('click', function () { modal.classList.remove('open'); });
+    document.getElementById('modal-cancel').addEventListener('click', function () { modal.classList.remove('open'); });
+    modal.addEventListener('click', function (e) { if (e.target === modal) modal.classList.remove('open'); });
+
+    document.getElementById('modal-save').addEventListener('click', function () {
+      var name = document.getElementById('ca-name').value.trim();
+      var lat = parseFloat(document.getElementById('ca-lat').value);
+      var lng = parseFloat(document.getElementById('ca-lng').value);
+      var unsafePct = parseInt(document.getElementById('ca-unsafe').value, 10) || 80;
+      var total = parseInt(document.getElementById('ca-total').value, 10) || 10;
+      if (!name || isNaN(lat) || isNaN(lng)) { alert('Please fill Name, Latitude and Longitude.'); return; }
+      if (lat < -90 || lat > 90 || lng < -180 || lng > 180) { alert('Invalid coordinates.'); return; }
+      manualCritical.unshift({ lat: lat, lng: lng, label: name, unsafePct: unsafePct, total: total });
+      L.marker([lat, lng], { icon: pinIcon(false) })
+        .addTo(map)
+        .bindPopup('<strong>' + name + '</strong><br>Critical Area (manual)<br>' + unsafePct + '% unsafe')
+        .openPopup();
+      map.flyTo([lat, lng], 10);
+      refreshCritical();
+      modal.classList.remove('open');
+      document.getElementById('ca-name').value = '';
+      document.getElementById('ca-lat').value = '';
+      document.getElementById('ca-lng').value = '';
+    });
+
+
+    // ===== PAGE NAV (no old website redirects) =====
+    function showPage(name) {
+      document.querySelectorAll('.nav-page').forEach(function (a) {
+        a.classList.toggle('active', a.dataset.page === name);
+      });
+      var main = document.querySelector('.main');
+      var toolbar = document.querySelector('.toolbar');
+      var pageDetail = document.getElementById('page-detail');
+      var pageStats = document.getElementById('page-stats');
+      var pageAi = document.getElementById('page-ai');
+      if (name === 'geo') {
+        if (main) main.classList.remove('hidden');
+        if (toolbar) toolbar.classList.remove('hidden');
+        if (pageDetail) pageDetail.classList.remove('active');
+        if (pageStats) pageStats.classList.remove('active');
+        if (pageAi) pageAi.classList.remove('active');
+        var fp = document.getElementById('filters-panel');
+        if (fp) { fp.classList.add('open'); /* keep state */ }
+        setTimeout(function () { if (map) map.invalidateSize(); }, 100);
+      } else if (name === 'detail') {
+        if (main) main.classList.add('hidden');
+        if (toolbar) toolbar.classList.add('hidden');
+        var fp = document.getElementById('filters-panel');
+        if (fp) fp.classList.remove('open');
+        var bf = document.getElementById('btn-filters');
+        if (bf) bf.classList.remove('active-filter');
+        if (pageDetail) pageDetail.classList.add('active');
+        if (pageStats) pageStats.classList.remove('active');
+        if (pageAi) pageAi.classList.remove('active');
+        renderDetailTable();
+      } else if (name === 'stats') {
+        if (main) main.classList.add('hidden');
+        if (toolbar) toolbar.classList.add('hidden');
+        if (pageDetail) pageDetail.classList.remove('active');
+        if (pageStats) pageStats.classList.add('active');
+        var pageAi = document.getElementById('page-ai');
+        if (pageAi) pageAi.classList.remove('active');
+        renderStatsPage();
+      } else if (name === 'ai') {
+        if (main) main.classList.add('hidden');
+        if (toolbar) toolbar.classList.add('hidden');
+        if (pageDetail) pageDetail.classList.remove('active');
+        if (pageStats) pageStats.classList.remove('active');
+        var pageAi = document.getElementById('page-ai');
+        if (pageAi) pageAi.classList.add('active');
+      }
+    }
+
+    document.querySelectorAll('.nav-page').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        showPage(a.dataset.page);
+      });
+    });
+
+    document.getElementById('btn-feedback') && document.getElementById('btn-feedback').addEventListener('click', function (e) {
+      e.preventDefault();
+      alert('Feedback form — connect to your backend when ready.\n\nFor now this is frontend-only.');
+    });
+
+    function renderDetailTable() {
+      var tbody = document.getElementById('detail-tbody');
+      if (!tbody || !DATA) return;
+      var statusF = (document.getElementById('filter-status') || {}).value || 'all';
+      var q = ((document.getElementById('filter-search') || {}).value || '').toLowerCase();
+      var rows = [];
+      if (typeof enrichDataMeta === 'function') enrichDataMeta();
+      DATA.points.forEach(function (pt, i) {
+        var st = DATA.status[i];
+        var loc = DATA.locations[i];
+        if (statusF === '1' && st !== 1) return;
+        if (statusF === '2' && st !== 2) return;
+        if (q && loc.toLowerCase().indexOf(q) === -1) return;
+        rows.push({
+          id: i + 1, lat: pt[0], lng: pt[1], status: st, loc: loc,
+          region: (DATA.regions && DATA.regions[i]) || '—',
+          year: (DATA.years && DATA.years[i]) || '—'
+        });
+      });
+      var show = rows.slice(0, 150);
+      tbody.innerHTML = show.map(function (r) {
+        var badge = r.status === 1
+          ? '<span class="status-badge safe">Safe</span>'
+          : '<span class="status-badge unsafe">Unsafe</span>';
+        return '<tr><td>' + r.id + '</td><td>' + r.loc + '</td><td>' + r.region + '</td><td>' +
+          r.lat.toFixed(4) + '</td><td>' + r.lng.toFixed(4) + '</td><td>' + badge + '</td></tr>';
+      }).join('');
+      var cnt = document.getElementById('detail-count');
+      if (cnt) cnt.textContent = rows.length + ' rows' + (rows.length > 150 ? ' (showing 150)' : '');
+      if (DATA) {
+        var safe = DATA.status.filter(function (s) { return s === 1; }).length;
+        var total = DATA.status.length;
+        var el;
+        if ((el = document.getElementById('dr-total'))) el.textContent = total;
+        if ((el = document.getElementById('dr-safe'))) el.textContent = safe;
+        if ((el = document.getElementById('dr-unsafe'))) el.textContent = total - safe;
+      }
+    }
+
+    function renderStatsPage() {
+      if (!DATA) return;
+      var safe = DATA.status.filter(function (s) { return s === 1; }).length;
+      var total = DATA.status.length;
+      var unsafe = total - safe;
+      var pct = Math.round((safe / total) * 100);
+      var el;
+      if ((el = document.getElementById('st-total'))) el.textContent = total;
+      if ((el = document.getElementById('st-safe'))) el.textContent = safe;
+      if ((el = document.getElementById('st-unsafe'))) el.textContent = unsafe;
+      if ((el = document.getElementById('st-pct'))) el.textContent = pct + '%';
+      if ((el = document.getElementById('bar-safe'))) el.style.width = pct + '%';
+      if ((el = document.getElementById('bar-unsafe'))) el.style.width = (100 - pct) + '%';
+      if ((el = document.getElementById('bar-safe-lbl'))) el.textContent = pct + '%';
+      if ((el = document.getElementById('bar-unsafe-lbl'))) el.textContent = (100 - pct) + '%';
+      if ((el = document.getElementById('st-donut'))) el.style.setProperty('--safe-pct', pct + '%');
+      if ((el = document.getElementById('st-donut-val'))) el.textContent = pct + '%';
+      if ((el = document.getElementById('ins-safe'))) el.textContent = safe;
+      if ((el = document.getElementById('ins-unsafe'))) el.textContent = unsafe;
+      if ((el = document.getElementById('leg-st-safe'))) el.textContent = safe;
+      if ((el = document.getElementById('leg-st-unsafe'))) el.textContent = unsafe;
+      if ((el = document.getElementById('hbar-safe'))) el.style.width = pct + '%';
+      if ((el = document.getElementById('hbar-unsafe'))) el.style.width = (100 - pct) + '%';
+      // re-trigger line draw animation
+      var line = document.getElementById('st-line');
+      if (line) {
+        line.style.animation = 'none';
+        line.offsetHeight;
+        line.style.animation = '';
+      }
+    }
+
+    document.getElementById('filter-status') && document.getElementById('filter-status').addEventListener('change', renderDetailTable);
+    document.getElementById('filter-search') && document.getElementById('filter-search').addEventListener('input', renderDetailTable);
+
+
+
+    // ===== AI AGENT =====
+    function aiReply(q) {
+      q = (q || '').toLowerCase();
+      var safe = DATA ? DATA.status.filter(function (s) { return s === 1; }).length : 160;
+      var total = DATA ? DATA.status.length : 442;
+      var unsafe = total - safe;
+      var pct = Math.round((safe / total) * 100);
+      var caCount = (typeof criticalAreas !== 'undefined' && criticalAreas) ? criticalAreas.length : 8;
+
+      if (q.indexOf('unsafe') >= 0 || q.indexOf('khatarnak') >= 0) {
+        return 'Abhi <strong>' + unsafe + '</strong> sources unsafe hain (total ' + total + ' mein se). Unsafe ratio ~' + (100 - pct) + '%. Critical tab se high-risk zones dekho.';
+      }
+      if (q.indexOf('safe') >= 0 && q.indexOf('rate') >= 0 || q.indexOf('%') >= 0 || q.indexOf('percent') >= 0) {
+        return 'Safe rate abhi <strong>' + pct + '%</strong> hai — yani ' + safe + ' sources PCRWR/WHO guidelines ke mutabiq safe hain.';
+      }
+      if (q.indexOf('critical') >= 0 || q.indexOf('zone') >= 0) {
+        return 'Portal par <strong>' + caCount + ' critical zones</strong> track ho rahe hain. Geographic Info → Critical tab pe ranked list milti hai; row click se map jump karta hai.';
+      }
+      if (q.indexOf('priorit') >= 0 || q.indexOf('test') >= 0 || q.indexOf('pehli') >= 0) {
+        return 'Priority: pehle un clusters pe field teams bhejo jahan unsafe % sab se zyada ho (Critical tab ranking). Area Health Score layer se regional risk bhi clear hota hai.';
+      }
+      if (q.indexOf('total') >= 0 || q.indexOf('kitne') >= 0 || q.indexOf('how many') >= 0) {
+        return 'National network mein <strong>' + total + '</strong> groundwater sources monitor ho rahe hain: ' + safe + ' safe, ' + unsafe + ' unsafe.';
+      }
+      if (q.indexOf('hello') >= 0 || q.indexOf('salam') >= 0 || q.indexOf('hi') >= 0) {
+        return 'Walaikum Assalam! Water quality se related kuch bhi poochho — counts, critical zones, ya prioritisation.';
+      }
+      return 'Samajh gaya. Summary: <strong>' + total + '</strong> sources · Safe ' + safe + ' (' + pct + '%) · Unsafe ' + unsafe + ' · Critical zones ' + caCount + '. Detail ke liye map tabs ya Detail Report use karo.';
+    }
+
+    function appendAiMsg(text, who) {
+      var chat = document.getElementById('ai-chat');
+      if (!chat) return;
+      var div = document.createElement('div');
+      div.className = 'ai-msg ' + who;
+      if (who === 'bot') {
+        div.innerHTML = '<div class="ai-avatar"><i class="ti ti-robot"></i></div><div class="ai-bubble">' + text + '</div>';
+      } else {
+        div.innerHTML = '<div class="ai-avatar"><i class="ti ti-user"></i></div><div class="ai-bubble">' + text + '</div>';
+      }
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function showTyping(cb) {
+      var chat = document.getElementById('ai-chat');
+      var tip = document.createElement('div');
+      tip.className = 'ai-msg bot';
+      tip.id = 'ai-typing-row';
+      tip.innerHTML = '<div class="ai-avatar"><i class="ti ti-robot"></i></div><div class="ai-bubble"><div class="ai-typing"><span></span><span></span><span></span></div></div>';
+      chat.appendChild(tip);
+      chat.scrollTop = chat.scrollHeight;
+      setTimeout(function () {
+        var t = document.getElementById('ai-typing-row');
+        if (t) t.remove();
+        cb();
+      }, 700 + Math.random() * 500);
+    }
+
+    function askAi(q) {
+      q = (q || '').trim();
+      if (!q) return;
+      appendAiMsg(q, 'user');
+      showTyping(function () {
+        appendAiMsg(aiReply(q), 'bot');
+      });
+    }
+
+    document.getElementById('ai-form') && document.getElementById('ai-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var inp = document.getElementById('ai-input');
+      var q = inp.value;
+      inp.value = '';
+      askAi(q);
+    });
+    document.querySelectorAll('.ai-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        askAi(chip.getAttribute('data-q'));
+      });
+    });
+
+
+
+    // ===== FILTERS (original-style drawer) =====
+    var filterState = { year: 'all', source: 'gw', status: 'all', region: 'all', city: 'all', param: 'all' };
+
+    function enrichDataMeta() {
+      if (!DATA || DATA.years) return;
+      var years = [2021, 2022, 2023, 2024, 2025];
+      var regions = ['Punjab', 'Sindh', 'KPK', 'Balochistan', 'Islamabad'];
+      var cities = ['Lahore', 'Karachi', 'Islamabad', 'Peshawar', 'Quetta', 'Multan', 'Hyderabad'];
+      var sources = ['gw', 'sw', 'dw'];
+      DATA.years = []; DATA.regions = []; DATA.sources = []; DATA.cities = [];
+      DATA.points.forEach(function (_, i) {
+        DATA.years.push(years[i % years.length]);
+        DATA.regions.push(regions[i % regions.length]);
+        DATA.cities.push(cities[i % cities.length]);
+        DATA.sources.push(sources[i % 5 === 0 ? 1 : (i % 7 === 0 ? 2 : 0)]);
+      });
+    }
+
+    function matchesFilters(i) {
+      if (filterState.status !== 'all' && String(DATA.status[i]) !== filterState.status) return false;
+      if (filterState.year !== 'all' && String(DATA.years[i]) !== filterState.year) return false;
+      if (filterState.region !== 'all' && DATA.regions[i] !== filterState.region) return false;
+      if (filterState.city !== 'all' && DATA.cities[i] !== filterState.city) return false;
+      if (filterState.source !== 'all' && DATA.sources[i] !== filterState.source) return false;
+      return true;
+    }
+
+    function loadMarkersFiltered() {
+      if (!DATA) return;
+      enrichDataMeta();
+      safeLG.clearLayers(); unsafeLG.clearLayers(); pulseLG.clearLayers();
+      mapPoints = [];
+      var bounds = [];
+      DATA.points.forEach(function (pt, i) {
+        if (!matchesFilters(i)) return;
+        var safe = DATA.status[i] === 1;
+        var m = L.marker(pt, { icon: pinIcon(safe) });
+        m.bindPopup(
+          '<strong>' + DATA.locations[i] + '</strong><br>' +
+          'Status: ' + (safe ? 'Safe' : 'Unsafe') + '<br>' +
+          'Year: ' + DATA.years[i] + ' · ' + DATA.regions[i] + ' · ' + DATA.cities[i]
+        );
+        if (safe) m.addTo(safeLG);
+        else {
+          m.addTo(unsafeLG);
+          L.marker(pt, {
+            icon: L.divIcon({ className: 'pulse-marker-wrap', html: '<span class="pulse-dot"></span>', iconSize: [16, 16], iconAnchor: [8, 8] }),
+            interactive: false
+          }).addTo(pulseLG);
+        }
+        mapPoints.push({ lat: pt[0], lng: pt[1], status: DATA.status[i], loc: DATA.locations[i] });
+        bounds.push(pt);
+      });
+      if (bounds.length) map.fitBounds(L.latLngBounds(bounds), { padding: [50, 50], maxZoom: 8 });
+      var sc = document.getElementById('src-count');
+      if (sc) sc.textContent = mapPoints.length + ' / ' + DATA.points.length + ' Sources';
+    }
+
+    function openFilters() {
+      document.getElementById('filters-panel').classList.add('open');
+      document.getElementById('filters-backdrop').classList.add('show');
+      document.getElementById('btn-filters').classList.add('active-filter');
+    }
+    function closeFilters() {
+      document.getElementById('filters-panel').classList.remove('open');
+      document.getElementById('filters-backdrop').classList.remove('show');
+      document.getElementById('btn-filters').classList.remove('active-filter');
+    }
+
+    document.getElementById('btn-filters').addEventListener('click', function () {
+      var p = document.getElementById('filters-panel');
+      if (p.classList.contains('open')) closeFilters();
+      else openFilters();
+    });
+    document.getElementById('btn-filters-close').addEventListener('click', closeFilters);
+    document.getElementById('filters-backdrop').addEventListener('click', closeFilters);
+
+    document.querySelectorAll('.filter-row').forEach(function (row) {
+      row.addEventListener('click', function () {
+        var key = this.dataset.open;
+        var exp = document.getElementById('exp-' + key);
+        var wasOpen = exp.classList.contains('open');
+        document.querySelectorAll('.filter-expand').forEach(function (e) { e.classList.remove('open'); });
+        document.querySelectorAll('.filter-row').forEach(function (r) { r.classList.remove('open-row'); });
+        if (!wasOpen) {
+          exp.classList.add('open');
+          this.classList.add('open-row');
+        }
+      });
+    });
+
+    document.querySelectorAll('.year-tab-v').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        document.querySelectorAll('.year-tab-v').forEach(function (b) { b.classList.remove('active'); });
+        this.classList.add('active');
+        filterState.year = this.dataset.year;
+        document.getElementById('lbl-year').textContent = '( ' + (this.dataset.year === 'all' ? 'All Years' : this.dataset.year) + ' )';
+      });
+    });
+
+    function bindRadioGroup(name, stateKey, labelId, labelMap) {
+      document.querySelectorAll('input[name="' + name + '"]').forEach(function (inp) {
+        inp.addEventListener('change', function () {
+          filterState[stateKey] = this.value;
+          if (labelId) {
+            var t = labelMap && labelMap[this.value] ? labelMap[this.value] : this.parentNode.textContent.trim();
+            document.getElementById(labelId).textContent = '( ' + t + ' )';
+          }
+        });
+      });
+    }
+    bindRadioGroup('f-source', 'source', 'lbl-source');
+    bindRadioGroup('f-region', 'region', 'lbl-region');
+    bindRadioGroup('f-city', 'city', 'lbl-city');
+    bindRadioGroup('f-param', 'param', 'lbl-param');
+    bindRadioGroup('f-status', 'status', null);
+
+    document.getElementById('btn-filter-apply').addEventListener('click', function () {
+      loadMarkersFiltered();
+      refreshCritical();
+      updateAllStats();
+      closeFilters();
+      this.innerHTML = '<i class="ti ti-check"></i> Applied';
+      var self = this;
+      setTimeout(function () { self.innerHTML = '<i class="ti ti-check"></i> Apply'; }, 1000);
+    });
+
+
+
+    // Sidebar hide / show
+    document.getElementById('sidebar-toggle') && document.getElementById('sidebar-toggle').addEventListener('click', function () {
+      var main = document.querySelector('.main');
+      if (!main) return;
+      main.classList.toggle('sidebar-collapsed');
+      var icon = document.getElementById('sidebar-toggle-icon');
+      var collapsed = main.classList.contains('sidebar-collapsed');
+      if (icon) {
+        icon.className = collapsed
+          ? 'ti ti-layout-sidebar-left-expand'
+          : 'ti ti-layout-sidebar-left-collapse';
+      }
+      setTimeout(function () { if (map) map.invalidateSize(); }, 380);
+    });
+
+
+    // Detail report sub-tabs
+    document.querySelectorAll('#dr-tabs .report-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('#dr-tabs .report-tab').forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        var id = tab.dataset.drtab;
+        document.querySelectorAll('.dr-panel').forEach(function (p) { p.classList.remove('active'); });
+        var panel = document.getElementById('dr-panel-' + (id === 'param' ? 'param' : id === 'summary' ? 'summary' : 'detail'));
+        if (panel) panel.classList.add('active');
+        if (id === 'summary' || id === 'detail') {
+          // refresh numbers
+          if (DATA) {
+            var safe = DATA.status.filter(function (s) { return s === 1; }).length;
+            var total = DATA.status.length;
+            var unsafe = total - safe;
+            var pct = Math.round((safe / total) * 100);
+            ['dr-total','sum-total'].forEach(function (id) { var e = document.getElementById(id); if (e) e.textContent = total; });
+            ['dr-safe','sum-safe'].forEach(function (id) { var e = document.getElementById(id); if (e) e.textContent = safe; });
+            ['dr-unsafe','sum-unsafe'].forEach(function (id) { var e = document.getElementById(id); if (e) e.textContent = unsafe; });
+            var sp = document.getElementById('sum-pct'); if (sp) sp.textContent = pct + '%';
+          }
+        }
+      });
+    });
+
+
+    // Live feel: subtle source count pulse every few seconds
+    setInterval(function () {
+      var pill = document.getElementById('live-pill');
+      if (pill && document.querySelector('.main') && !document.querySelector('.main').classList.contains('hidden')) {
+        pill.classList.remove('live-flash');
+        void pill.offsetWidth;
+        pill.classList.add('live-flash');
+      }
+    }, 4000);
+
+    initMap();
+  </script>
+</body>
+</html>

@@ -1,0 +1,4458 @@
+{
+  "meta": {
+    "title": "PCRWR National Water Quality Portal - Dummy Dataset",
+    "total_sources": 442,
+    "safe": 160,
+    "unsafe": 282,
+    "status_codes": {
+      "1": "Safe",
+      "2": "Unsafe"
+    },
+    "note": "Dummy/sample data for frontend testing only"
+  },
+  "sources": [
+    {
+      "id": 1,
+      "lat": 28.082742,
+      "lng": 73.096255,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #1",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 2,
+      "lat": 27.918763,
+      "lng": 73.185445,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #2",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 3,
+      "lat": 28.126412,
+      "lng": 73.389515,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #3",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 4,
+      "lat": 28.196481,
+      "lng": 73.124122,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #4",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 5,
+      "lat": 27.914865,
+      "lng": 73.338409,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #5",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 6,
+      "lat": 27.823387,
+      "lng": 73.55241,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #6",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 7,
+      "lat": 27.736941,
+      "lng": 73.414477,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #7",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 8,
+      "lat": 29.467448,
+      "lng": 71.700224,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #8",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 9,
+      "lat": 29.274198,
+      "lng": 71.72017,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #9",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 10,
+      "lat": 29.539244,
+      "lng": 71.457924,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #10",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 11,
+      "lat": 30.287619,
+      "lng": 71.609163,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #11",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 12,
+      "lat": 30.078113,
+      "lng": 71.364966,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #12",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 13,
+      "lat": 25.605746,
+      "lng": 68.276468,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #13",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 14,
+      "lat": 25.216736,
+      "lng": 68.168522,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #14",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 15,
+      "lat": 25.556372,
+      "lng": 68.396677,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #15",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 16,
+      "lat": 25.038208,
+      "lng": 67.203379,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #16",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 17,
+      "lat": 24.916303,
+      "lng": 67.312902,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #17",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 18,
+      "lat": 26.19534,
+      "lng": 68.323418,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #18",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 19,
+      "lat": 26.398232,
+      "lng": 68.353334,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #19",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 20,
+      "lat": 31.612768,
+      "lng": 74.334808,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #20",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 21,
+      "lat": 28.642057,
+      "lng": 76.945621,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #21",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 22,
+      "lat": 27.897554,
+      "lng": 73.215225,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #22",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 23,
+      "lat": 27.830906,
+      "lng": 73.189756,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #23",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 24,
+      "lat": 27.840451,
+      "lng": 73.210088,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #24",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 25,
+      "lat": 28.081058,
+      "lng": 73.249174,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #25",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 26,
+      "lat": 27.891581,
+      "lng": 73.419278,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #26",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 27,
+      "lat": 27.84514,
+      "lng": 73.746495,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #27",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 28,
+      "lat": 28.016616,
+      "lng": 73.599109,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #28",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 29,
+      "lat": 29.252012,
+      "lng": 71.783107,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #29",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 30,
+      "lat": 29.248531,
+      "lng": 71.625755,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #30",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 31,
+      "lat": 29.620286,
+      "lng": 71.743,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #31",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 32,
+      "lat": 30.175627,
+      "lng": 71.603076,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #32",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 33,
+      "lat": 30.304283,
+      "lng": 71.6442,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #33",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 34,
+      "lat": 25.278072,
+      "lng": 68.139445,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #34",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 35,
+      "lat": 25.316954,
+      "lng": 68.245483,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #35",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 36,
+      "lat": 25.269942,
+      "lng": 68.549309,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #36",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 37,
+      "lat": 25.069365,
+      "lng": 67.016605,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #37",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 38,
+      "lat": 24.969947,
+      "lng": 67.053034,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #38",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 39,
+      "lat": 26.436546,
+      "lng": 68.281483,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #39",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 40,
+      "lat": 26.144196,
+      "lng": 68.185982,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #40",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 41,
+      "lat": 31.477616,
+      "lng": 74.193234,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Lahore Zone #41",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 42,
+      "lat": 28.588064,
+      "lng": 77.32902,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #42",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 43,
+      "lat": 27.97473,
+      "lng": 73.183694,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #43",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 44,
+      "lat": 28.243892,
+      "lng": 73.314287,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #44",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 45,
+      "lat": 27.835909,
+      "lng": 73.106202,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #45",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 46,
+      "lat": 27.844342,
+      "lng": 73.367351,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #46",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 47,
+      "lat": 28.081436,
+      "lng": 73.514972,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #47",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 48,
+      "lat": 27.753587,
+      "lng": 73.496729,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #48",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 49,
+      "lat": 28.173255,
+      "lng": 73.563101,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #49",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 50,
+      "lat": 29.611985,
+      "lng": 71.842351,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #50",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 51,
+      "lat": 29.180166,
+      "lng": 71.779325,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #51",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 52,
+      "lat": 29.48177,
+      "lng": 71.696637,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #52",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 53,
+      "lat": 30.045071,
+      "lng": 71.583433,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #53",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 54,
+      "lat": 29.975198,
+      "lng": 71.490644,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #54",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 55,
+      "lat": 25.379176,
+      "lng": 68.554217,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #55",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 56,
+      "lat": 25.569134,
+      "lng": 68.243525,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #56",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 57,
+      "lat": 25.400264,
+      "lng": 68.205393,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #57",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 58,
+      "lat": 25.085683,
+      "lng": 67.266733,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #58",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 59,
+      "lat": 24.8093,
+      "lng": 67.162527,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #59",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 60,
+      "lat": 26.299037,
+      "lng": 68.143778,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #60",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 61,
+      "lat": 26.36813,
+      "lng": 68.317721,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #61",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 62,
+      "lat": 31.575382,
+      "lng": 74.313659,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #62",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 63,
+      "lat": 28.325257,
+      "lng": 77.07087,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #63",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 64,
+      "lat": 27.803765,
+      "lng": 73.503094,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #64",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 65,
+      "lat": 28.190425,
+      "lng": 73.459249,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #65",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 66,
+      "lat": 27.933381,
+      "lng": 73.111066,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #66",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 67,
+      "lat": 28.190104,
+      "lng": 73.511127,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #67",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 68,
+      "lat": 27.763544,
+      "lng": 73.543696,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #68",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 69,
+      "lat": 27.756146,
+      "lng": 73.667271,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #69",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 70,
+      "lat": 28.069625,
+      "lng": 73.382776,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #70",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 71,
+      "lat": 29.388877,
+      "lng": 71.702412,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #71",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 72,
+      "lat": 29.294275,
+      "lng": 71.847595,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #72",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 73,
+      "lat": 29.365412,
+      "lng": 71.550309,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #73",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 74,
+      "lat": 30.167683,
+      "lng": 71.623469,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #74",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 75,
+      "lat": 30.015518,
+      "lng": 71.435272,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #75",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 76,
+      "lat": 25.622817,
+      "lng": 68.417445,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #76",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 77,
+      "lat": 25.372145,
+      "lng": 68.357909,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #77",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 78,
+      "lat": 25.229452,
+      "lng": 68.226114,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #78",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 79,
+      "lat": 24.827139,
+      "lng": 67.139739,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #79",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 80,
+      "lat": 24.778552,
+      "lng": 66.974098,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #80",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 81,
+      "lat": 26.056947,
+      "lng": 68.358996,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #81",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 82,
+      "lat": 26.128024,
+      "lng": 68.482439,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #82",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 83,
+      "lat": 31.611836,
+      "lng": 74.106886,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #83",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 84,
+      "lat": 28.432102,
+      "lng": 77.22604,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #84",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 85,
+      "lat": 27.891407,
+      "lng": 73.14454,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #85",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 86,
+      "lat": 28.215981,
+      "lng": 73.341969,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #86",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 87,
+      "lat": 28.007702,
+      "lng": 73.438079,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #87",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 88,
+      "lat": 28.158374,
+      "lng": 73.170684,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #88",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 89,
+      "lat": 27.768619,
+      "lng": 73.518973,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #89",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 90,
+      "lat": 27.91561,
+      "lng": 73.535161,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #90",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 91,
+      "lat": 28.053084,
+      "lng": 73.628014,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #91",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 92,
+      "lat": 29.617874,
+      "lng": 71.499288,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #92",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 93,
+      "lat": 29.35618,
+      "lng": 71.607686,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #93",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 94,
+      "lat": 29.562753,
+      "lng": 71.566895,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #94",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 95,
+      "lat": 30.010594,
+      "lng": 71.496876,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #95",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 96,
+      "lat": 30.114847,
+      "lng": 71.420345,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #96",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 97,
+      "lat": 25.287413,
+      "lng": 68.54047,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #97",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 98,
+      "lat": 25.374409,
+      "lng": 68.512607,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #98",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 99,
+      "lat": 25.422646,
+      "lng": 68.147765,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #99",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 100,
+      "lat": 25.124677,
+      "lng": 67.251212,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #100",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 101,
+      "lat": 25.111048,
+      "lng": 67.291865,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #101",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 102,
+      "lat": 26.406913,
+      "lng": 68.14984,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #102",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 103,
+      "lat": 26.243539,
+      "lng": 68.171186,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #103",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 104,
+      "lat": 31.405468,
+      "lng": 74.101386,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Lahore Zone #104",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 105,
+      "lat": 28.495538,
+      "lng": 77.368389,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #105",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 106,
+      "lat": 27.914341,
+      "lng": 73.437832,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #106",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 107,
+      "lat": 27.999754,
+      "lng": 73.275353,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #107",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 108,
+      "lat": 28.225793,
+      "lng": 73.53294,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #108",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 109,
+      "lat": 28.045096,
+      "lng": 73.408284,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #109",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 110,
+      "lat": 27.794659,
+      "lng": 73.458519,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #110",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 111,
+      "lat": 28.160919,
+      "lng": 73.585631,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #111",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 112,
+      "lat": 27.968988,
+      "lng": 73.661589,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #112",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 113,
+      "lat": 29.200724,
+      "lng": 71.71788,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #113",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 114,
+      "lat": 29.401283,
+      "lng": 71.838724,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #114",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 115,
+      "lat": 29.245845,
+      "lng": 71.887351,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #115",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 116,
+      "lat": 29.96105,
+      "lng": 71.378621,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #116",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 117,
+      "lat": 30.192766,
+      "lng": 71.598846,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #117",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 118,
+      "lat": 25.280842,
+      "lng": 68.178949,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #118",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 119,
+      "lat": 25.575629,
+      "lng": 68.235797,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #119",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 120,
+      "lat": 25.442534,
+      "lng": 68.403722,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #120",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 121,
+      "lat": 24.863651,
+      "lng": 67.137653,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #121",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 122,
+      "lat": 24.910252,
+      "lng": 67.295618,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #122",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 123,
+      "lat": 26.116917,
+      "lng": 68.397286,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #123",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 124,
+      "lat": 26.132409,
+      "lng": 68.253104,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #124",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 125,
+      "lat": 31.527261,
+      "lng": 74.209999,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Lahore Zone #125",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 126,
+      "lat": 28.46728,
+      "lng": 77.263339,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #126",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 127,
+      "lat": 27.827644,
+      "lng": 73.291228,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #127",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 128,
+      "lat": 28.244304,
+      "lng": 73.533243,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #128",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 129,
+      "lat": 27.827967,
+      "lng": 73.180919,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #129",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 130,
+      "lat": 27.91434,
+      "lng": 73.504967,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #130",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 131,
+      "lat": 28.121389,
+      "lng": 73.720672,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #131",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 132,
+      "lat": 27.891287,
+      "lng": 73.395986,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #132",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 133,
+      "lat": 28.100185,
+      "lng": 73.641593,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #133",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 134,
+      "lat": 29.450255,
+      "lng": 71.899255,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #134",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 135,
+      "lat": 29.469289,
+      "lng": 71.45852,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #135",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 136,
+      "lat": 29.542697,
+      "lng": 71.58972,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #136",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 137,
+      "lat": 30.223525,
+      "lng": 71.717519,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #137",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 138,
+      "lat": 29.985431,
+      "lng": 71.346943,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #138",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 139,
+      "lat": 25.223166,
+      "lng": 68.373951,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #139",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 140,
+      "lat": 25.297557,
+      "lng": 68.397173,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #140",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 141,
+      "lat": 25.497925,
+      "lng": 68.216619,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #141",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 142,
+      "lat": 24.960407,
+      "lng": 66.993793,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #142",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 143,
+      "lat": 24.894839,
+      "lng": 67.282401,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #143",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 144,
+      "lat": 26.405747,
+      "lng": 68.116534,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #144",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 145,
+      "lat": 26.215609,
+      "lng": 68.199506,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #145",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 146,
+      "lat": 31.226596,
+      "lng": 74.422004,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Lahore Zone #146",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 147,
+      "lat": 28.611701,
+      "lng": 77.04288,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #147",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 148,
+      "lat": 28.128554,
+      "lng": 73.333256,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #148",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 149,
+      "lat": 27.987459,
+      "lng": 73.089351,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #149",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 150,
+      "lat": 27.82886,
+      "lng": 73.482398,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #150",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 151,
+      "lat": 28.201768,
+      "lng": 73.330516,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #151",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 152,
+      "lat": 28.100568,
+      "lng": 73.587129,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #152",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 153,
+      "lat": 27.791642,
+      "lng": 73.38235,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #153",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 154,
+      "lat": 27.863716,
+      "lng": 73.729542,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #154",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 155,
+      "lat": 29.533255,
+      "lng": 71.842316,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #155",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 156,
+      "lat": 29.579516,
+      "lng": 71.549534,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #156",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 157,
+      "lat": 29.287288,
+      "lng": 71.501257,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #157",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 158,
+      "lat": 30.276052,
+      "lng": 71.692861,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #158",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 159,
+      "lat": 30.10787,
+      "lng": 71.574298,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #159",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 160,
+      "lat": 25.244549,
+      "lng": 68.543446,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #160",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 161,
+      "lat": 25.564073,
+      "lng": 68.564293,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #161",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 162,
+      "lat": 25.539847,
+      "lng": 68.521637,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #162",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 163,
+      "lat": 24.686154,
+      "lng": 67.206454,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #163",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 164,
+      "lat": 24.824483,
+      "lng": 67.293867,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #164",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 165,
+      "lat": 26.386006,
+      "lng": 68.463829,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #165",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 166,
+      "lat": 26.389837,
+      "lng": 68.195063,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #166",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 167,
+      "lat": 31.579319,
+      "lng": 74.123643,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #167",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 168,
+      "lat": 28.717475,
+      "lng": 77.311367,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #168",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 169,
+      "lat": 27.895095,
+      "lng": 73.452464,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #169",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 170,
+      "lat": 28.002136,
+      "lng": 73.222336,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #170",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 171,
+      "lat": 28.152905,
+      "lng": 73.187418,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #171",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 172,
+      "lat": 27.805649,
+      "lng": 73.171908,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #172",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 173,
+      "lat": 27.872718,
+      "lng": 73.713959,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #173",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 174,
+      "lat": 28.1601,
+      "lng": 73.450606,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #174",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 175,
+      "lat": 28.013667,
+      "lng": 73.504855,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #175",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 176,
+      "lat": 29.616517,
+      "lng": 71.696297,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #176",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 177,
+      "lat": 29.597657,
+      "lng": 71.506904,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #177",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 178,
+      "lat": 29.61168,
+      "lng": 71.535356,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #178",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 179,
+      "lat": 30.35814,
+      "lng": 71.41446,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #179",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 180,
+      "lat": 29.973781,
+      "lng": 71.490554,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #180",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 181,
+      "lat": 25.502845,
+      "lng": 68.266155,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #181",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 182,
+      "lat": 25.447794,
+      "lng": 68.35514,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #182",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 183,
+      "lat": 25.348338,
+      "lng": 68.384465,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #183",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 184,
+      "lat": 24.789625,
+      "lng": 67.193953,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #184",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 185,
+      "lat": 24.675761,
+      "lng": 67.291509,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #185",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 186,
+      "lat": 26.267303,
+      "lng": 68.398743,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #186",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 187,
+      "lat": 26.358878,
+      "lng": 68.376783,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #187",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 188,
+      "lat": 31.3889,
+      "lng": 74.106488,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #188",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 189,
+      "lat": 28.623907,
+      "lng": 77.07359,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #189",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 190,
+      "lat": 27.936262,
+      "lng": 73.466607,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #190",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 191,
+      "lat": 28.118889,
+      "lng": 73.220145,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #191",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 192,
+      "lat": 27.934178,
+      "lng": 73.268777,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #192",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 193,
+      "lat": 27.97608,
+      "lng": 73.218045,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #193",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 194,
+      "lat": 27.78228,
+      "lng": 73.514201,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #194",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 195,
+      "lat": 28.148164,
+      "lng": 73.629793,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #195",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 196,
+      "lat": 28.131262,
+      "lng": 73.601982,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #196",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 197,
+      "lat": 29.310427,
+      "lng": 71.701572,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #197",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 198,
+      "lat": 29.175183,
+      "lng": 71.584111,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #198",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 199,
+      "lat": 29.36845,
+      "lng": 71.715993,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #199",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 200,
+      "lat": 30.219618,
+      "lng": 71.504245,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #200",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 201,
+      "lat": 30.123972,
+      "lng": 71.391166,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #201",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 202,
+      "lat": 25.387934,
+      "lng": 68.530531,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #202",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 203,
+      "lat": 25.533211,
+      "lng": 68.201361,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #203",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 204,
+      "lat": 25.213158,
+      "lng": 68.356953,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #204",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 205,
+      "lat": 24.959823,
+      "lng": 67.025835,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #205",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 206,
+      "lat": 25.043291,
+      "lng": 67.213012,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #206",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 207,
+      "lat": 26.327758,
+      "lng": 68.176088,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #207",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 208,
+      "lat": 26.114608,
+      "lng": 68.085991,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #208",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 209,
+      "lat": 31.335179,
+      "lng": 74.288811,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #209",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 210,
+      "lat": 28.707382,
+      "lng": 76.957773,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #210",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 211,
+      "lat": 27.981498,
+      "lng": 73.368394,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #211",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 212,
+      "lat": 27.882496,
+      "lng": 73.398359,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #212",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 213,
+      "lat": 28.01747,
+      "lng": 73.194793,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #213",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 214,
+      "lat": 28.090226,
+      "lng": 73.087495,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #214",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 215,
+      "lat": 28.062934,
+      "lng": 73.671521,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #215",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 216,
+      "lat": 27.772964,
+      "lng": 73.516316,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #216",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 217,
+      "lat": 27.804149,
+      "lng": 73.756085,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #217",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 218,
+      "lat": 29.408081,
+      "lng": 71.477598,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #218",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 219,
+      "lat": 29.287139,
+      "lng": 71.836751,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #219",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 220,
+      "lat": 29.380408,
+      "lng": 71.815637,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #220",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 221,
+      "lat": 30.22541,
+      "lng": 71.739552,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #221",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 222,
+      "lat": 30.192954,
+      "lng": 71.722518,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #222",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 223,
+      "lat": 25.576142,
+      "lng": 68.400694,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #223",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 224,
+      "lat": 25.498673,
+      "lng": 68.35215,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #224",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 225,
+      "lat": 25.548756,
+      "lng": 68.371542,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #225",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 226,
+      "lat": 25.078744,
+      "lng": 67.209645,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #226",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 227,
+      "lat": 24.888603,
+      "lng": 66.991636,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #227",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 228,
+      "lat": 26.136258,
+      "lng": 68.361948,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #228",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 229,
+      "lat": 26.369616,
+      "lng": 68.309585,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #229",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 230,
+      "lat": 31.507037,
+      "lng": 74.198569,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #230",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 231,
+      "lat": 28.359868,
+      "lng": 77.053578,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #231",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 232,
+      "lat": 27.917272,
+      "lng": 73.228869,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #232",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 233,
+      "lat": 28.038069,
+      "lng": 73.147268,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #233",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 234,
+      "lat": 27.899068,
+      "lng": 73.397277,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #234",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 235,
+      "lat": 28.112889,
+      "lng": 73.113903,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #235",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 236,
+      "lat": 27.90842,
+      "lng": 73.569175,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #236",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 237,
+      "lat": 27.912098,
+      "lng": 73.418075,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #237",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 238,
+      "lat": 27.914065,
+      "lng": 73.732177,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #238",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 239,
+      "lat": 29.437836,
+      "lng": 71.767985,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #239",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 240,
+      "lat": 29.560529,
+      "lng": 71.799518,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #240",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 241,
+      "lat": 29.346171,
+      "lng": 71.457653,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #241",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 242,
+      "lat": 30.083291,
+      "lng": 71.634064,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #242",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 243,
+      "lat": 30.309052,
+      "lng": 71.724044,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #243",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 244,
+      "lat": 25.36356,
+      "lng": 68.461382,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #244",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 245,
+      "lat": 25.42076,
+      "lng": 68.396464,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #245",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 246,
+      "lat": 25.274242,
+      "lng": 68.22374,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #246",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 247,
+      "lat": 24.871126,
+      "lng": 66.888061,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #247",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 248,
+      "lat": 24.826258,
+      "lng": 67.180614,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #248",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 249,
+      "lat": 26.206943,
+      "lng": 68.14927,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #249",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 250,
+      "lat": 26.235326,
+      "lng": 68.132433,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #250",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 251,
+      "lat": 31.505016,
+      "lng": 74.087135,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #251",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 252,
+      "lat": 28.502309,
+      "lng": 77.178976,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #252",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 253,
+      "lat": 27.807196,
+      "lng": 73.374237,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #253",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 254,
+      "lat": 27.856065,
+      "lng": 73.292764,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #254",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 255,
+      "lat": 27.817628,
+      "lng": 73.255597,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #255",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 256,
+      "lat": 27.890247,
+      "lng": 73.232081,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #256",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 257,
+      "lat": 28.067553,
+      "lng": 73.495607,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #257",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 258,
+      "lat": 28.063404,
+      "lng": 73.699366,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #258",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 259,
+      "lat": 27.838522,
+      "lng": 73.361858,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #259",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 260,
+      "lat": 29.183722,
+      "lng": 71.697739,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #260",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 261,
+      "lat": 29.624959,
+      "lng": 71.612482,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #261",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 262,
+      "lat": 29.467565,
+      "lng": 71.806555,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #262",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 263,
+      "lat": 30.21829,
+      "lng": 71.634405,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #263",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 264,
+      "lat": 30.352325,
+      "lng": 71.384712,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #264",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 265,
+      "lat": 25.184171,
+      "lng": 68.193572,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #265",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 266,
+      "lat": 25.231799,
+      "lng": 68.426256,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #266",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 267,
+      "lat": 25.428786,
+      "lng": 68.223084,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #267",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 268,
+      "lat": 24.989759,
+      "lng": 67.220104,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #268",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 269,
+      "lat": 24.750505,
+      "lng": 67.148261,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #269",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 270,
+      "lat": 26.361567,
+      "lng": 68.12654,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #270",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 271,
+      "lat": 26.393686,
+      "lng": 68.509124,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #271",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 272,
+      "lat": 31.273644,
+      "lng": 74.086555,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #272",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 273,
+      "lat": 28.465381,
+      "lng": 77.229806,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #273",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 274,
+      "lat": 28.226178,
+      "lng": 73.263494,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #274",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 275,
+      "lat": 28.116757,
+      "lng": 73.119198,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #275",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 276,
+      "lat": 28.105776,
+      "lng": 73.367259,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #276",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 277,
+      "lat": 27.840856,
+      "lng": 73.432616,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #277",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 278,
+      "lat": 28.107632,
+      "lng": 73.595185,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #278",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 279,
+      "lat": 27.779475,
+      "lng": 73.76773,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #279",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 280,
+      "lat": 28.077186,
+      "lng": 73.481242,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #280",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 281,
+      "lat": 29.36777,
+      "lng": 71.621757,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #281",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 282,
+      "lat": 29.402682,
+      "lng": 71.608554,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #282",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 283,
+      "lat": 29.557309,
+      "lng": 71.825049,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #283",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 284,
+      "lat": 29.972492,
+      "lng": 71.727354,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #284",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 285,
+      "lat": 30.211013,
+      "lng": 71.667918,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #285",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 286,
+      "lat": 25.493289,
+      "lng": 68.320969,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #286",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 287,
+      "lat": 25.505208,
+      "lng": 68.559463,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #287",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 288,
+      "lat": 25.296537,
+      "lng": 68.48869,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #288",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 289,
+      "lat": 24.917178,
+      "lng": 67.092574,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #289",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 290,
+      "lat": 24.871009,
+      "lng": 67.203962,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #290",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 291,
+      "lat": 26.145778,
+      "lng": 68.458271,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #291",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 292,
+      "lat": 26.398829,
+      "lng": 68.113998,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #292",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 293,
+      "lat": 31.621734,
+      "lng": 74.184739,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #293",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 294,
+      "lat": 28.534119,
+      "lng": 77.199649,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #294",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 295,
+      "lat": 27.965545,
+      "lng": 73.097915,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #295",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 296,
+      "lat": 28.177929,
+      "lng": 73.166828,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #296",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 297,
+      "lat": 27.890454,
+      "lng": 73.444025,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #297",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 298,
+      "lat": 27.948152,
+      "lng": 73.481144,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #298",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 299,
+      "lat": 28.040533,
+      "lng": 73.449321,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #299",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 300,
+      "lat": 27.729568,
+      "lng": 73.751628,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #300",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 301,
+      "lat": 27.763526,
+      "lng": 73.649034,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #301",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 302,
+      "lat": 29.39486,
+      "lng": 71.796174,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bahawalpur Zone #302",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 303,
+      "lat": 29.485774,
+      "lng": 71.745656,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #303",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 304,
+      "lat": 29.39587,
+      "lng": 71.81182,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #304",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 305,
+      "lat": 29.966874,
+      "lng": 71.394718,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #305",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 306,
+      "lat": 30.236304,
+      "lng": 71.432793,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #306",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 307,
+      "lat": 25.4367,
+      "lng": 68.337967,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #307",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 308,
+      "lat": 25.413915,
+      "lng": 68.316477,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #308",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 309,
+      "lat": 25.510671,
+      "lng": 68.273856,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #309",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 310,
+      "lat": 24.991285,
+      "lng": 66.996912,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #310",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 311,
+      "lat": 24.788132,
+      "lng": 66.929295,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #311",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 312,
+      "lat": 26.111663,
+      "lng": 68.1288,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #312",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 313,
+      "lat": 26.266139,
+      "lng": 68.417985,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #313",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 314,
+      "lat": 31.308317,
+      "lng": 74.172373,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #314",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 315,
+      "lat": 28.542889,
+      "lng": 77.251063,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #315",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 316,
+      "lat": 28.234473,
+      "lng": 73.321087,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #316",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 317,
+      "lat": 27.922349,
+      "lng": 73.130237,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #317",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 318,
+      "lat": 27.882353,
+      "lng": 73.187367,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #318",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 319,
+      "lat": 27.875749,
+      "lng": 73.091367,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #319",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 320,
+      "lat": 27.965361,
+      "lng": 73.44844,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #320",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 321,
+      "lat": 28.163433,
+      "lng": 73.574012,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #321",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 322,
+      "lat": 28.038838,
+      "lng": 73.381826,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #322",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 323,
+      "lat": 29.565808,
+      "lng": 71.675895,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #323",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 324,
+      "lat": 29.567724,
+      "lng": 71.713329,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #324",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 325,
+      "lat": 29.386229,
+      "lng": 71.653211,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #325",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 326,
+      "lat": 30.007964,
+      "lng": 71.31812,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #326",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 327,
+      "lat": 30.348479,
+      "lng": 71.509978,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Multan Zone #327",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 328,
+      "lat": 25.544952,
+      "lng": 68.305318,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #328",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 329,
+      "lat": 25.208337,
+      "lng": 68.408251,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #329",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 330,
+      "lat": 25.199124,
+      "lng": 68.192139,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #330",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 331,
+      "lat": 24.928278,
+      "lng": 67.011726,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #331",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 332,
+      "lat": 25.122263,
+      "lng": 66.928303,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #332",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 333,
+      "lat": 26.369,
+      "lng": 68.347843,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #333",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 334,
+      "lat": 26.380833,
+      "lng": 68.176559,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #334",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 335,
+      "lat": 31.460158,
+      "lng": 74.277732,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #335",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 336,
+      "lat": 28.524224,
+      "lng": 77.312075,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #336",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 337,
+      "lat": 28.240514,
+      "lng": 73.222421,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #337",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 338,
+      "lat": 28.074462,
+      "lng": 73.359334,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #338",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 339,
+      "lat": 28.12804,
+      "lng": 73.511416,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #339",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 340,
+      "lat": 27.888505,
+      "lng": 73.179961,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #340",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 341,
+      "lat": 28.022193,
+      "lng": 73.395676,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #341",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 342,
+      "lat": 27.803216,
+      "lng": 73.358779,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #342",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 343,
+      "lat": 27.726204,
+      "lng": 73.527727,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #343",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 344,
+      "lat": 29.442215,
+      "lng": 71.586067,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #344",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 345,
+      "lat": 29.279164,
+      "lng": 71.77313,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #345",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 346,
+      "lat": 29.491344,
+      "lng": 71.659314,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #346",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 347,
+      "lat": 30.234323,
+      "lng": 71.71076,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #347",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 348,
+      "lat": 30.279523,
+      "lng": 71.576276,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #348",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 349,
+      "lat": 25.472532,
+      "lng": 68.545151,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #349",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 350,
+      "lat": 25.366313,
+      "lng": 68.370053,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #350",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 351,
+      "lat": 25.466436,
+      "lng": 68.533785,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #351",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 352,
+      "lat": 25.046984,
+      "lng": 66.907134,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #352",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 353,
+      "lat": 24.749665,
+      "lng": 67.013425,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Karachi Zone #353",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 354,
+      "lat": 26.362031,
+      "lng": 68.331143,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #354",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 355,
+      "lat": 26.154875,
+      "lng": 68.130959,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #355",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 356,
+      "lat": 31.534905,
+      "lng": 74.38988,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #356",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 357,
+      "lat": 28.749204,
+      "lng": 77.150212,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #357",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 358,
+      "lat": 28.017208,
+      "lng": 73.121199,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #358",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 359,
+      "lat": 27.812937,
+      "lng": 73.279413,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #359",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 360,
+      "lat": 27.940045,
+      "lng": 73.197666,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #360",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 361,
+      "lat": 27.836097,
+      "lng": 73.51786,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #361",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 362,
+      "lat": 28.101181,
+      "lng": 73.58384,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #362",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 363,
+      "lat": 28.152854,
+      "lng": 73.774808,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Rajasthan Border #363",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 364,
+      "lat": 28.027527,
+      "lng": 73.44628,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #364",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 365,
+      "lat": 29.193104,
+      "lng": 71.795321,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #365",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 366,
+      "lat": 29.386725,
+      "lng": 71.748179,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #366",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 367,
+      "lat": 29.587233,
+      "lng": 71.53667,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #367",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 368,
+      "lat": 30.188398,
+      "lng": 71.580653,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #368",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 369,
+      "lat": 30.146277,
+      "lng": 71.336059,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #369",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 370,
+      "lat": 25.331582,
+      "lng": 68.274989,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #370",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 371,
+      "lat": 25.47656,
+      "lng": 68.51098,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #371",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 372,
+      "lat": 25.323412,
+      "lng": 68.437153,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #372",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 373,
+      "lat": 24.804698,
+      "lng": 67.300337,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #373",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 374,
+      "lat": 25.041105,
+      "lng": 67.122543,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #374",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 375,
+      "lat": 26.229672,
+      "lng": 68.216533,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #375",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 376,
+      "lat": 26.170473,
+      "lng": 68.511583,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #376",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 377,
+      "lat": 31.406879,
+      "lng": 74.306568,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #377",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 378,
+      "lat": 28.769654,
+      "lng": 77.220947,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Delhi / NCR #378",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 379,
+      "lat": 28.039167,
+      "lng": 73.270961,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Bikaner Zone #379",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 380,
+      "lat": 27.879412,
+      "lng": 73.247801,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #380",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 381,
+      "lat": 28.135399,
+      "lng": 73.366434,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #381",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 382,
+      "lat": 28.136996,
+      "lng": 73.176601,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #382",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 383,
+      "lat": 27.972149,
+      "lng": 73.742453,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #383",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 384,
+      "lat": 27.922152,
+      "lng": 73.639213,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #384",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 385,
+      "lat": 27.779642,
+      "lng": 73.762916,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #385",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 386,
+      "lat": 29.448992,
+      "lng": 71.562684,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #386",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 387,
+      "lat": 29.24627,
+      "lng": 71.702878,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #387",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 388,
+      "lat": 29.423513,
+      "lng": 71.496944,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #388",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 389,
+      "lat": 30.371516,
+      "lng": 71.705818,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #389",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 390,
+      "lat": 30.132652,
+      "lng": 71.34786,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #390",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 391,
+      "lat": 25.549464,
+      "lng": 68.349269,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #391",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 392,
+      "lat": 25.497471,
+      "lng": 68.353992,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #392",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 393,
+      "lat": 25.298041,
+      "lng": 68.500626,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #393",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 394,
+      "lat": 25.11611,
+      "lng": 66.984679,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #394",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 395,
+      "lat": 24.923069,
+      "lng": 67.047614,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #395",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 396,
+      "lat": 26.439841,
+      "lng": 68.303708,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #396",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 397,
+      "lat": 26.420697,
+      "lng": 68.463812,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #397",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 398,
+      "lat": 31.349311,
+      "lng": 74.430503,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Lahore Zone #398",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 399,
+      "lat": 28.511724,
+      "lng": 77.345412,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #399",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 400,
+      "lat": 28.023482,
+      "lng": 73.454247,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #400",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 401,
+      "lat": 27.922278,
+      "lng": 73.21935,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #401",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 402,
+      "lat": 28.059122,
+      "lng": 73.534506,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #402",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 403,
+      "lat": 28.015338,
+      "lng": 73.151868,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #403",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 404,
+      "lat": 27.967361,
+      "lng": 73.480306,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #404",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 405,
+      "lat": 27.973363,
+      "lng": 73.569544,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #405",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 406,
+      "lat": 27.929905,
+      "lng": 73.4698,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #406",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 407,
+      "lat": 29.259894,
+      "lng": 71.768874,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #407",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 408,
+      "lat": 29.432309,
+      "lng": 71.560103,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #408",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 409,
+      "lat": 29.523995,
+      "lng": 71.474641,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #409",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 410,
+      "lat": 30.260117,
+      "lng": 71.612353,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #410",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 411,
+      "lat": 30.290134,
+      "lng": 71.468735,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #411",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 412,
+      "lat": 25.47366,
+      "lng": 68.494336,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #412",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 413,
+      "lat": 25.616368,
+      "lng": 68.347898,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #413",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 414,
+      "lat": 25.191659,
+      "lng": 68.351031,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #414",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 415,
+      "lat": 24.940581,
+      "lng": 67.266365,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #415",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 416,
+      "lat": 25.068386,
+      "lng": 67.073138,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #416",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 417,
+      "lat": 26.261678,
+      "lng": 68.280618,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #417",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 418,
+      "lat": 26.3501,
+      "lng": 68.25949,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #418",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 419,
+      "lat": 31.519652,
+      "lng": 74.144463,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #419",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 420,
+      "lat": 28.536271,
+      "lng": 77.361142,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #420",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 421,
+      "lat": 27.947353,
+      "lng": 73.396717,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #421",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 422,
+      "lat": 28.087426,
+      "lng": 73.468294,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #422",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 423,
+      "lat": 28.178554,
+      "lng": 73.471704,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #423",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 424,
+      "lat": 27.966004,
+      "lng": 73.227498,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #424",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    },
+    {
+      "id": 425,
+      "lat": 28.048423,
+      "lng": 73.666731,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #425",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 426,
+      "lat": 28.117572,
+      "lng": 73.341155,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #426",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 427,
+      "lat": 27.755789,
+      "lng": 73.609022,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Rajasthan Border #427",
+      "region": "Rajasthan Border",
+      "city": "Rajasthan"
+    },
+    {
+      "id": 428,
+      "lat": 29.589418,
+      "lng": 71.903842,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #428",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 429,
+      "lat": 29.511045,
+      "lng": 71.650287,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #429",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 430,
+      "lat": 29.219299,
+      "lng": 71.740187,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bahawalpur Zone #430",
+      "region": "Bahawalpur Zone",
+      "city": "Bahawalpur"
+    },
+    {
+      "id": 431,
+      "lat": 30.317661,
+      "lng": 71.494655,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #431",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 432,
+      "lat": 30.237301,
+      "lng": 71.701541,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Multan Zone #432",
+      "region": "Multan Zone",
+      "city": "Multan"
+    },
+    {
+      "id": 433,
+      "lat": 25.195696,
+      "lng": 68.483265,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #433",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 434,
+      "lat": 25.307015,
+      "lng": 68.293678,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Hyderabad Zone #434",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 435,
+      "lat": 25.240506,
+      "lng": 68.364025,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Hyderabad Zone #435",
+      "region": "Hyderabad Zone",
+      "city": "Hyderabad"
+    },
+    {
+      "id": 436,
+      "lat": 24.929668,
+      "lng": 67.231634,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #436",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 437,
+      "lat": 24.751493,
+      "lng": 66.910536,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Karachi Zone #437",
+      "region": "Karachi Zone",
+      "city": "Karachi"
+    },
+    {
+      "id": 438,
+      "lat": 26.416878,
+      "lng": 68.35387,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Sindh Interior #438",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 439,
+      "lat": 26.133373,
+      "lng": 68.485773,
+      "status": 1,
+      "status_label": "Safe",
+      "location": "Sindh Interior #439",
+      "region": "Sindh Interior",
+      "city": "Sindh"
+    },
+    {
+      "id": 440,
+      "lat": 31.289403,
+      "lng": 74.282517,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Lahore Zone #440",
+      "region": "Lahore Zone",
+      "city": "Lahore"
+    },
+    {
+      "id": 441,
+      "lat": 28.43929,
+      "lng": 77.039897,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Delhi / NCR #441",
+      "region": "Delhi / NCR",
+      "city": "Delhi"
+    },
+    {
+      "id": 442,
+      "lat": 27.799229,
+      "lng": 73.447085,
+      "status": 2,
+      "status_label": "Unsafe",
+      "location": "Bikaner Zone #442",
+      "region": "Bikaner Zone",
+      "city": "Bikaner"
+    }
+  ],
+  "critical_areas_sample": [
+    {
+      "lat": 28.02,
+      "lng": 73.31,
+      "label": "Bikaner High Risk Zone",
+      "unsafePct": 92,
+      "total": 18
+    },
+    {
+      "lat": 25.4,
+      "lng": 68.35,
+      "label": "Hyderabad Industrial Belt",
+      "unsafePct": 88,
+      "total": 24
+    },
+    {
+      "lat": 24.86,
+      "lng": 67.0,
+      "label": "Karachi Coastal Cluster",
+      "unsafePct": 81,
+      "total": 15
+    }
+  ]
+}
