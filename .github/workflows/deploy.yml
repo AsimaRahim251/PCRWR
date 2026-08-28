@@ -22,7 +22,11 @@ jobs:
           node-version: 20
 
       - run: npm install
-      - run: npm run build
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_BASE: /PCRWR/   # ← yahan bhi same repo name
 
       - uses: actions/configure-pages@v5
 
