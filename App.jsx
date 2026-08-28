@@ -8,8 +8,8 @@ import DetailReport from './DetailReport';
 import Statistics from './Statistics';
 
 // Part 4
-import AIAgent from './AIAgent';
-import Feedback from './Feedback';
+import AIAgent from './components/ai/AIAgent';
+import Feedback from './components/ai/Feedback';
 
 import './layout.css';
 
