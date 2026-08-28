@@ -1,4 +1,4 @@
-import { getStats } from '../shared/waterData';
+import { getStats } from './waterData';
 
 export default function GeoSidePanel({
   panel,
