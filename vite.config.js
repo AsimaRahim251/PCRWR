@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+// GitHub Pages: base = '/REPO_NAME/'
+// Local / Vercel / Netlify: base = '/'
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages ke liye REPO name daalo
-  base: process.env.VITE_BASE || '/pcrwr-portal/',   // ← apna exact repo name
+  base: process.env.VITE_BASE || '/PCRWR/',
 });
