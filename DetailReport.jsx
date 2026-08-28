@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { DATA } from '../shared/waterData';
+import { DATA } from '../waterData';
 import './reports.css';
 
 export default function DetailReport() {
