@@ -3,18 +3,15 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import './layout.css';
-
-// Part 2
 import GeoPage from './GeoPage';
-
-// Part 3
 import DetailReport from './DetailReport';
 import Statistics from './Statistics';
 
 // Part 4
-import AIAgent from '../part-4-ai-feedback/AIAgent';
-import Feedback from '../part-4-ai-feedback/Feedback';
+import AIAgent from './AIAgent';
+import Feedback from './Feedback';
+
+import './layout.css';
 
 function Shell() {
   const location = useLocation();
@@ -44,13 +41,25 @@ function Shell() {
             }
           />
 
-          <Route path="/detail" element={<DetailReport />} />
+          <Route
+            path="/detail"
+            element={<DetailReport />}
+          />
 
-          <Route path="/stats" element={<Statistics />} />
+          <Route
+            path="/stats"
+            element={<Statistics />}
+          />
 
-          <Route path="/ai" element={<AIAgent />} />
+          <Route
+            path="/ai"
+            element={<AIAgent />}
+          />
 
-          <Route path="/feedback" element={<Feedback />} />
+          <Route
+            path="/feedback"
+            element={<Feedback />}
+          />
         </Routes>
       </div>
     </div>
