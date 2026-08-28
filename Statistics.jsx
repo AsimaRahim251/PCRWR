@@ -1,4 +1,4 @@
-import { getStats } from '../shared/waterData';
+import { getStats } from '../waterData';
 import './reports.css';
 
 export default function Statistics() {
