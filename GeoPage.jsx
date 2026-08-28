@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { DATA, getStats, CRITICAL_ZONES } from '../waterData';
+import { DATA, getStats, CRITICAL_ZONES } from './waterData';
 import GeoSidePanel from './GeoSidePanel';
 import './geo.css';
 
